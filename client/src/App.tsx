@@ -1,33 +1,17 @@
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Signup from './pages/Signup';
+import Home from './pages/Home';
 import Login from './pages/Login';
-import Register from './pages/Register';
-import Dashboard from './pages/Dashboard';
-import PrivateRoute from './components/PrivateRoute';
-import { AuthProvider } from './context/AuthContext';
 
-const App: React.FC = () => {
-  const isAuthenticated = localStorage.getItem('token');  // Verifica il token
-
+export default function App() {
   return (
     <Router>
-      <AuthProvider>
-        <Routes>
-          {/* Se già autenticato, redirige alla dashboard */}
-          <Route path="/" element={isAuthenticated ? <Navigate to="/dashboard" /> : <Navigate to="/login" />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route
-            path="/dashboard"
-            element={
-              <PrivateRoute>
-                <Dashboard />
-              </PrivateRoute>
-            }
-          />
-        </Routes>
-      </AuthProvider>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/login" element={<Login />} />
+      </Routes>
     </Router>
   );
-};
-
-export default App;
+}

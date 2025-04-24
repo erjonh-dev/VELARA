@@ -1,67 +1,31 @@
-import { useState } from 'react';
-import { useAuth } from '../context/AuthContext';
-import { useNavigate } from 'react-router-dom'; // Importa useNavigate
+// filepath: c:\Users\Havol\Desktop\VELARA\client\src\pages\Login.tsx
+import React from 'react';
 
-const Login = () => {
-  const { login } = useAuth();
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
-  
-  const navigate = useNavigate(); // Crea la funzione navigate
-  
-  const handleLogin = async (e: React.FormEvent) => {
-    e.preventDefault();
-
-    try {
-      const res = await fetch('http://localhost:5000/api/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, password }),
-      });
-
-      const data = await res.json();
-
-      if (res.ok) {
-        login(data.token); // salva il token nel contesto
-        // Reindirizza alla pagina della dashboard
-        navigate('/dashboard');  // Redirect alla dashboard
-      } else {
-        setError(data.msg || 'Errore nel login');
-      }
-    } catch (err) {
-      setError('Errore di rete');
-      console.error(err);
-    }
-  };
-
+export default function Login() {
   return (
-    <div>
-      <h2>Login</h2>
-      {error && <p style={{ color: 'red' }}>{error}</p>}
-      <form onSubmit={handleLogin}>
-        <div>
-          <label>Email:</label>
-          <input
-            type="email"
-            value={email}
-            onChange={e => setEmail(e.target.value)}
-            required
-          />
-        </div>
-        <div>
-          <label>Password:</label>
-          <input
-            type="password"
-            value={password}
-            onChange={e => setPassword(e.target.value)}
-            required
-          />
-        </div>
-        <button type="submit">Login</button>
-      </form>
+    <div className="d-flex align-items-center justify-content-center vh-100">
+      <div className="card p-4 shadow" style={{ maxWidth: '400px', width: '100%' }}>
+        <h2 className="text-center text-primary mb-4">Benvenuto su Velara</h2>
+        <form>
+          <div className="mb-3">
+            <label className="form-label">Email o Username</label>
+            <input type="text" className="form-control" />
+          </div>
+          <div className="mb-3">
+            <label className="form-label">Password</label>
+            <input type="password" className="form-control" />
+          </div>
+          <button type="submit" className="btn btn-primary w-100">
+            Login
+          </button>
+        </form>
+        <p className="text-center mt-3">
+          Non sei registrato?{' '}
+          <a href="/signup" className="text-primary">
+            Registrati
+          </a>
+        </p>
+      </div>
     </div>
   );
-};
-
-export default Login;
+}
