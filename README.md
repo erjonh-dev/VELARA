@@ -1,8 +1,8 @@
-# UniCash
+# Velara
 
 ## Overview
 
-UniCash is a web application designed to help students manage their finances effectively. It provides tools for tracking expenses, visualizing spending patterns, and maintaining a healthy budget throughout their academic journey.
+Velara is a web application designed to simplify human resource management for modern companies. It offers tools for hiring, payroll, employee data management, and digital contracts—all in one intuitive platform. Velara streamlines HR processes, helping businesses save time, stay compliant, and support their teams more efficiently.
 
 ## Features
 
@@ -14,18 +14,18 @@ UniCash is a web application designed to help students manage their finances eff
 
 ## How To Use
 
-To use UniCash, follow these steps:
+To use Velara, follow these steps:
 
 1. Clone this repository:
 
     ```bash
-    git clone https://github.com/francescovitale-dev/uni-cash.git
+    git clone https://github.com/HavolliErjon/VELARA.git
     ```
 
 2. Navigate to the project directory:
 
     ```bash
-    cd unicash
+    cd velara
     ```
 
 3. Install dependencies:

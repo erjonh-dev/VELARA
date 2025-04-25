@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export default function Signup() {
   const [formData, setFormData] = useState({
@@ -7,8 +8,8 @@ export default function Signup() {
     password: '',
     confirmPassword: '',
   });
-
   const [errors, setErrors] = useState<string[]>([]);
+  const navigate = useNavigate(); // Hook per il reindirizzamento
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({
@@ -17,7 +18,7 @@ export default function Signup() {
     });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const newErrors: string[] = [];
 
@@ -32,20 +33,40 @@ export default function Signup() {
     setErrors(newErrors);
 
     if (newErrors.length === 0) {
-      // Invia i dati al server
-      console.log('Dati inviati:', formData);
+      try {
+        const response = await fetch('http://localhost:5000/api/register', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            name: formData.username,
+            email: formData.email,
+            password: formData.password,
+          }),
+        });
+
+        if (response.ok) {
+          console.log('Registrazione completata');
+          navigate('/login'); // Reindirizza alla pagina di login
+        } else {
+          const error = await response.json();
+          setErrors([error.msg || 'Errore durante la registrazione.']);
+        }
+      } catch (err) {
+        console.error('Errore di rete:', err);
+        setErrors(['Errore di rete. Riprova più tardi.']);
+      }
     }
   };
 
   return (
-    <div className="d-flex align-items-center justify-content-center vh-100 bg-dark text-white">
+    <div className="d-flex align-items-center justify-content-center vh-100 bg-light">
       <div className="card p-4 shadow-lg" style={{ maxWidth: '400px', width: '100%' }}>
         <h2 className="text-center text-primary mb-4">Registrati su Velara</h2>
         <form onSubmit={handleSubmit}>
           <div className="mb-3">
-            <label htmlFor="username" className="form-label">
-              Username
-            </label>
+            <label htmlFor="username" className="form-label">Username</label>
             <input
               type="text"
               className="form-control"
@@ -57,9 +78,7 @@ export default function Signup() {
             />
           </div>
           <div className="mb-3">
-            <label htmlFor="email" className="form-label">
-              Email
-            </label>
+            <label htmlFor="email" className="form-label">Email</label>
             <input
               type="email"
               className="form-control"
@@ -71,9 +90,7 @@ export default function Signup() {
             />
           </div>
           <div className="mb-3">
-            <label htmlFor="password" className="form-label">
-              Password
-            </label>
+            <label htmlFor="password" className="form-label">Password</label>
             <input
               type="password"
               className="form-control"
@@ -85,9 +102,7 @@ export default function Signup() {
             />
           </div>
           <div className="mb-3">
-            <label htmlFor="confirmPassword" className="form-label">
-              Conferma Password
-            </label>
+            <label htmlFor="confirmPassword" className="form-label">Conferma Password</label>
             <input
               type="password"
               className="form-control"
@@ -100,23 +115,15 @@ export default function Signup() {
           </div>
           {errors.length > 0 && (
             <div className="alert alert-danger">
-              <ul className="mb-0">
+              <ul>
                 {errors.map((error, index) => (
                   <li key={index}>{error}</li>
                 ))}
               </ul>
             </div>
           )}
-          <button type="submit" className="btn btn-primary w-100">
-            Registrati
-          </button>
+          <button type="submit" className="btn btn-primary w-100">Registrati</button>
         </form>
-        <p className="text-center mt-3">
-          Hai già un account?{' '}
-          <a href="/login" className="text-primary">
-            Accedi
-          </a>
-        </p>
       </div>
     </div>
   );

@@ -31,3 +31,13 @@ body {
   .hover-card:hover img {
     transform: scale(1.1);
   }
+
+  .text-muted {
+    color: #6c757d !important; 
+  }
+  
+  .text-black {
+    color: #000 !important; 
+    font-weight: bold !important; 
+    font-size: 1.7rem;
+  }
