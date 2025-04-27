@@ -1,12 +1,13 @@
+// src/pages/Dashboard.tsx
 import React, { useEffect, useState } from 'react';
 import { Routes, Route, Link } from 'react-router-dom';
 import HomeDashboard from '../components/HomeDashboard';
 import Personale from '../components/Personale';
+import Calendario from '../components/Calendario';  // Importa il componente Calendario
 
-export default function Dashboard() {
-  const [user, setUser] = useState<{ name: string; role: string; company: string }>({
+const Dashboard: React.FC = () => {
+  const [user, setUser] = useState<{ name: string; company: string }>({
     name: '',
-    role: '',
     company: '',
   });
 
@@ -15,9 +16,8 @@ export default function Dashboard() {
     const loggedInUser = JSON.parse(localStorage.getItem('user') || '{}');
     if (loggedInUser) {
       setUser({
-        name: loggedInUser.name || 'Nome Utente', // Usa 'Nome Utente' come fallback se il nome non è presente
-        role: loggedInUser.role || 'Ruolo', // Usa 'Ruolo' come fallback se il ruolo non è presente
-        company: loggedInUser.company || 'Azienda', // Usa 'Azienda' come fallback se l'azienda non è presente
+        name: loggedInUser.name || 'Nome Utente',
+        company: loggedInUser.company || 'Azienda',
       });
     }
   }, []);
@@ -31,7 +31,7 @@ export default function Dashboard() {
           <p className="text-center mt-3">
             <strong className="text-black">{user.name}</strong> {/* Nome utente */}
             <br />
-            <span className="text-muted">{user.role}</span> {/* Ruolo */}
+            <span className="text-muted">Admin</span> {/* Ruolo fisso Admin */}
           </p>
           <ul className="nav flex-column">
             <li className="nav-item">
@@ -39,6 +39,9 @@ export default function Dashboard() {
             </li>
             <li className="nav-item">
               <Link to="/dashboard/personale" className="nav-link text-white">Personale</Link>
+            </li>
+            <li className="nav-item">
+              <Link to="/dashboard/calendario" className="nav-link text-white">Calendario</Link> {/* Aggiungi il link per Calendario */}
             </li>
           </ul>
         </div>
@@ -48,9 +51,12 @@ export default function Dashboard() {
           <Routes>
             <Route path="/home" element={<HomeDashboard />} />
             <Route path="/personale" element={<Personale />} />
+            <Route path="/calendario" element={<Calendario />} /> {/* Aggiungi la route per Calendario */}
           </Routes>
         </div>
       </div>
     </div>
   );
-}
+};
+
+export default Dashboard;

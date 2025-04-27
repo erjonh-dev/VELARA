@@ -34,8 +34,8 @@ export default function HomeDashboard() {
             <div className="card-body">
               <h5 className="card-title">Prossimi eventi</h5>
               <ul>
-                <li>Scadenza pagamento dell'F24: 16/09/2024</li>
-                <li>Fine del periodo di prova di Musk Elon: 01/12/2024</li>
+                <li>Scadenza versamento contributi INPS e IRPEF: 16/09/2024</li>
+                <li>Fine del periodo di prova di Luca Monti: 01/12/2024</li>
                 <li>Compleanno di Biondi Valeria: 01/01/2025</li>
                 <li>Compleanno di Rossi Mirco: 01/02/2025</li>
               </ul>
@@ -46,17 +46,25 @@ export default function HomeDashboard() {
       </div>
 
       <div className="row">
-        {/* Ultimo ciclo paghe */}
         <div className="col-md-6">
           <div className="card shadow-sm mb-4">
             <div className="card-body">
-              <h5 className="card-title">Ultimo ciclo paghe</h5>
-              <p>Flusso di cassa (Giugno 2024): 72.777€</p>
-              <p>Costo azienda (Giugno 2024): 53.674€</p>
-              <a href="#" className="btn btn-primary">Dettagli</a>
+              <h5 className="card-title">Andamento paghe</h5>
+              
+              <h6 className="mt-3">Giugno 2024</h6>
+              <p>Flusso di cassa personale: 72.777€</p>
+              <p>Costo totale del personale: 53.674€</p>
+
+              <h6 className="mt-4">Maggio 2024</h6>
+              <p>Flusso di cassa personale: 70.100€</p>
+              <p>Costo totale del personale: 52.200€</p>
             </div>
           </div>
         </div>
+
+
+
+
 
         {/* Chi è in ferie oggi */}
         <div className="col-md-6">

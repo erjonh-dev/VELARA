@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 export default function Personale() {
   const [employees, setEmployees] = useState([
@@ -6,12 +7,30 @@ export default function Personale() {
     { id: 2, name: 'Luigi Bianchi', role: 'Designer', status: 'Inattivo', startOfContract: '01/06/2022', endOfContract: 'N/A', contractType: 'Dipendente' },
     { id: 3, name: 'Anna Verdi', role: 'HR Manager', status: 'Attivo', startOfContract: '01/03/2021', endOfContract: 'N/A', contractType: 'Amministratore' },
     { id: 4, name: 'Luca Monti', role: 'Intern', status: 'Attivo', startOfContract: '01/06/2024', endOfContract: '01/12/2024', contractType: 'Dipendente' },
+    { id: 5, name: 'Chiara Neri', role: 'Accountant', status: 'Attivo', startOfContract: '15/04/2023', endOfContract: 'N/A', contractType: 'Dipendente' },
+    { id: 6, name: 'Alessandro Costa', role: 'Developer', status: 'Attivo', startOfContract: '20/02/2022', endOfContract: 'N/A', contractType: 'Dipendente' },
+    { id: 7, name: 'Federica Gallo', role: 'Designer', status: 'Inattivo', startOfContract: '10/09/2021', endOfContract: 'N/A', contractType: 'Dipendente' },
+    { id: 8, name: 'Paolo Ferri', role: 'Project Manager', status: 'Attivo', startOfContract: '01/11/2020', endOfContract: 'N/A', contractType: 'Amministratore' },
+    { id: 9, name: 'Sara Vitale', role: 'Marketing Specialist', status: 'Attivo', startOfContract: '05/07/2022', endOfContract: 'N/A', contractType: 'Dipendente' },
+    { id: 10, name: 'Giorgio De Luca', role: 'Developer', status: 'Inattivo', startOfContract: '08/08/2020', endOfContract: 'N/A', contractType: 'Dipendente' },
+    { id: 11, name: 'Elisa Greco', role: 'HR Assistant', status: 'Attivo', startOfContract: '22/03/2023', endOfContract: 'N/A', contractType: 'Dipendente' },
+    { id: 12, name: 'Roberto Fontana', role: 'System Administrator', status: 'Attivo', startOfContract: '15/05/2021', endOfContract: 'N/A', contractType: 'Dipendente' },
+    { id: 13, name: 'Marta Piras', role: 'Content Creator', status: 'Attivo', startOfContract: '01/02/2024', endOfContract: 'N/A', contractType: 'Dipendente' },
+    { id: 14, name: 'Davide Moretti', role: 'Intern', status: 'Attivo', startOfContract: '01/07/2024', endOfContract: '31/12/2024', contractType: 'Dipendente' },
+    { id: 15, name: 'Francesca Bianco', role: 'UX Researcher', status: 'Attivo', startOfContract: '01/09/2022', endOfContract: 'N/A', contractType: 'Dipendente' },
+    { id: 16, name: 'Matteo Rinaldi', role: 'Sales Manager', status: 'Inattivo', startOfContract: '10/01/2019', endOfContract: '31/12/2023', contractType: 'Dipendente' },
+    { id: 17, name: 'Ilaria Conti', role: 'Customer Support', status: 'Attivo', startOfContract: '12/04/2023', endOfContract: 'N/A', contractType: 'Dipendente' },
+    { id: 18, name: 'Simone Marchetti', role: 'Legal Advisor', status: 'Attivo', startOfContract: '15/06/2021', endOfContract: 'N/A', contractType: 'Dipendente' },
+    { id: 19, name: 'Laura Esposito', role: 'Recruiter', status: 'Attivo', startOfContract: '09/10/2022', endOfContract: 'N/A', contractType: 'Dipendente' },
+    { id: 20, name: 'Andrea Testa', role: 'Data Analyst', status: 'Inattivo', startOfContract: '01/03/2020', endOfContract: '31/12/2023', contractType: 'Dipendente' },
+    { id: 21, name: 'Giulia Marchetti', role: 'Product Owner', status: 'Attivo', startOfContract: '01/05/2022', endOfContract: 'N/A', contractType: 'Amministratore' },
+    { id: 22, name: 'Claudio Ricci', role: 'Security Officer', status: 'Attivo', startOfContract: '01/11/2023', endOfContract: 'N/A', contractType: 'Dipendente' },
   ]);
 
   const [newEmployee, setNewEmployee] = useState({
     name: '',
     role: '',
-    status: 'Attivo', 
+    status: 'Attivo',
     startOfContract: '',
     endOfContract: '',
     contractType: 'Dipendente',
@@ -86,6 +105,7 @@ export default function Personale() {
             <th>Inizio Contratto</th>
             <th>Fine Contratto</th>
             <th>Tipo Contratto</th>
+            <th>Documenti</th> {/* Aggiunto link ai documenti */}
           </tr>
         </thead>
         <tbody>
@@ -97,6 +117,12 @@ export default function Personale() {
               <td>{employee.startOfContract || '-'}</td>
               <td>{employee.endOfContract || '-'}</td>
               <td>{employee.contractType}</td>
+              <td>
+                {/* Link ai documenti del dipendente */}
+                <Link to={`/documenti/${employee.id}`} className="btn btn-primary">
+                  Visualizza Cedolino
+                </Link>
+              </td>
             </tr>
           ))}
         </tbody>
@@ -165,3 +191,4 @@ export default function Personale() {
     </div>
   );
 }
+
