@@ -1,23 +1,54 @@
-import { Link } from 'react-router-dom';
-import React, { useState } from 'react';
-import Logo from '../assets/VELARA.png'; // Assicurati che il percorso sia corretto
+import React, { useState, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { Sun, Moon } from 'lucide-react';
+import Logo from '../assets/VELARA.png';
 
 export default function Navbar() {
-  const [darkMode, setDarkMode] = useState(false);
+  const [darkMode, setDarkMode] = useState<boolean>(false);
+  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    // Dark mode init
+    const savedDarkMode = localStorage.getItem('darkMode') === 'true';
+    setDarkMode(savedDarkMode);
+    if (savedDarkMode) {
+      document.body.classList.add('dark-mode');
+    }
+
+    // Auth check init
+    const token = localStorage.getItem('token');
+    setIsAuthenticated(!!token);
+  }, []);
 
   const toggleDarkMode = () => {
-    setDarkMode(!darkMode);
-    document.body.style.backgroundColor = darkMode ? '#ffffff' : '#121212'; // Cambia il colore dello sfondo
-    document.body.style.color = darkMode ? '#000000' : '#ffffff'; // Cambia il colore del testo
+    setDarkMode((prevMode) => {
+      const newMode = !prevMode;
+      localStorage.setItem('darkMode', newMode.toString());
+      if (newMode) {
+        document.body.classList.add('dark-mode');
+      } else {
+        document.body.classList.remove('dark-mode');
+      }
+      return newMode;
+    });
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    setIsAuthenticated(false);
+    navigate('/');
   };
 
   return (
-    <nav
-      className={`navbar navbar-expand-lg ${darkMode ? 'navbar-dark bg-dark' : 'navbar-light bg-light'} shadow`}
-      style={{ height: '80px' }}
-    >
-      <div className="container-fluid">
-        {/* Dark Mode Toggle (Torcia) */}
+    <nav className={`navbar navbar-expand-lg ${darkMode ? 'navbar-dark bg-dark' : 'navbar-light bg-light'} shadow`} style={{ height: '80px' }}>
+      <div className="container-fluid d-flex align-items-center justify-content-between">
+        {/* Logo */}
+        <Link to="/" className="navbar-brand d-flex align-items-center">
+          <img src={Logo} alt="Velara Logo" className="me-2" style={{ width: '160px', height: '50px' }} />
+        </Link>
+
+        {/* Dark Mode Toggle */}
         <button
           className="btn btn-outline-secondary me-3"
           onClick={toggleDarkMode}
@@ -30,42 +61,26 @@ export default function Navbar() {
             borderRadius: '50%',
           }}
         >
-          {darkMode ? '🌞' : '🌙'}
-        </button>
-
-        {/* Logo */}
-        <Link to="/" className="navbar-brand">
-          <img src={Logo} alt="Velara Logo" className="me-2" style={{ width: '160px', height: '50px' }} />
-        </Link>
-
-        {/* Navbar Toggler */}
-        <button
-          className="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNav"
-          aria-controls="navbarNav"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span className="navbar-toggler-icon"></span>
+          {darkMode ? <Sun size={20} /> : <Moon size={20} />}
         </button>
 
         {/* Navbar Links */}
-        <div className="collapse navbar-collapse" id="navbarNav">
-          <ul className="navbar-nav ms-auto">
-            {/* Registrazione */}
-            <li className="nav-item">
-              <Link to="/signup" className="btn btn-primary me-2">
-                Registrazione
-              </Link>
-            </li>
-            {/* Login */}
-            <li className="nav-item">
-              <Link to="/login" className="nav-link">
-                Login
-              </Link>
-            </li>
+        <div className="d-flex align-items-center">
+          <ul className="navbar-nav flex-row">
+            {!isAuthenticated ? (
+              <>
+                <li className="nav-item me-2">
+                  <Link to="/login" className="nav-link">Login</Link>
+                </li>
+                <li className="nav-item">
+                  <Link to="/signup" className="btn btn-primary">Registrati</Link>
+                </li>
+              </>
+            ) : (
+              <li className="nav-item">
+                <button className="btn btn-danger" onClick={handleLogout}>Logout</button>
+              </li>
+            )}
           </ul>
         </div>
       </div>

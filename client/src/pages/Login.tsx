@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Navbar from '../components/Navbar'; // Importa il componente Navbar
+import Footer from '../components/Footer'; // Importa il componente Footer
 
 export default function Login() {
   const [email, setEmail] = useState('');
@@ -22,15 +24,12 @@ export default function Login() {
         console.log('Dati ricevuti dal backend:', data);
 
         // Salva i dati dell'utente nel localStorage
-        localStorage.setItem('user', JSON.stringify(data.user)); // Salva nome, ruolo, ecc.
-
-        // Salva anche il token nel localStorage
-        localStorage.setItem('token', data.token); // Salva il token per le richieste future
+        localStorage.setItem('user', JSON.stringify(data.user));
+        localStorage.setItem('token', data.token);
 
         // Reindirizza alla dashboard
         navigate('/dashboard/home');
       } else {
-        // Mostra un messaggio di errore
         alert(data.msg || 'Credenziali non valide');
       }
     } catch (error) {
@@ -40,31 +39,39 @@ export default function Login() {
   };
 
   return (
-    <div className="container mt-5">
-      <h2>Login</h2>
-      <form onSubmit={handleLogin}>
-        <div className="mb-3">
-          <label htmlFor="email" className="form-label">Email</label>
-          <input
-            type="email"
-            id="email"
-            className="form-control"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
+    <div>
+      <Navbar /> {/* Inserisci la Navbar */}
+      <div className="d-flex align-items-center justify-content-center vh-100">
+        <div className="card p-4 shadow-lg" style={{ maxWidth: '400px', width: '100%' }}>
+          <h2 className="text-center text-primary mb-4">Accedi a Velara</h2>
+          <form onSubmit={handleLogin}>
+            <div className="mb-3">
+              <label htmlFor="email" className="form-label">Email</label>
+              <input
+                type="email"
+                id="email"
+                className="form-control"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+              />
+            </div>
+            <div className="mb-3">
+              <label htmlFor="password" className="form-label">Password</label>
+              <input
+                type="password"
+                id="password"
+                className="form-control"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+              />
+            </div>
+            <button type="submit" className="btn btn-primary w-100">Accedi</button>
+          </form>
         </div>
-        <div className="mb-3">
-          <label htmlFor="password" className="form-label">Password</label>
-          <input
-            type="password"
-            id="password"
-            className="form-control"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </div>
-        <button type="submit" className="btn btn-primary">Accedi</button>
-      </form>
+      </div>
+      <Footer /> 
     </div>
   );
 }

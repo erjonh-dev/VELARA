@@ -105,7 +105,7 @@ export default function Personale() {
             <th>Inizio Contratto</th>
             <th>Fine Contratto</th>
             <th>Tipo Contratto</th>
-            <th>Documenti</th> {/* Aggiunto link ai documenti */}
+            <th>Documenti</th>
           </tr>
         </thead>
         <tbody>

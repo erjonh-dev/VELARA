@@ -1,15 +1,17 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Navbar from '../components/Navbar'; // Importa il componente Navbar
+import Footer from '../components/Footer'; // Importa il componente Footer
 
 export default function Signup() {
   const [formData, setFormData] = useState({
     username: '',
-    email: '',
+    email: '',  
     password: '',
     confirmPassword: '',
   });
   const [errors, setErrors] = useState<string[]>([]);
-  const navigate = useNavigate(); // Hook per il reindirizzamento
+  const navigate = useNavigate();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({
@@ -22,7 +24,6 @@ export default function Signup() {
     e.preventDefault();
     const newErrors: string[] = [];
 
-    // Validazione semplice
     if (formData.password !== formData.confirmPassword) {
       newErrors.push('Le password non corrispondono.');
     }
@@ -61,70 +62,74 @@ export default function Signup() {
   };
 
   return (
-    <div className="d-flex align-items-center justify-content-center vh-100 bg-light">
-      <div className="card p-4 shadow-lg" style={{ maxWidth: '400px', width: '100%' }}>
-        <h2 className="text-center text-primary mb-4">Registrati su Velara</h2>
-        <form onSubmit={handleSubmit}>
-          <div className="mb-3">
-            <label htmlFor="username" className="form-label">Username</label>
-            <input
-              type="text"
-              className="form-control"
-              id="username"
-              name="username"
-              value={formData.username}
-              onChange={handleChange}
-              required
-            />
-          </div>
-          <div className="mb-3">
-            <label htmlFor="email" className="form-label">Email</label>
-            <input
-              type="email"
-              className="form-control"
-              id="email"
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
-              required
-            />
-          </div>
-          <div className="mb-3">
-            <label htmlFor="password" className="form-label">Password</label>
-            <input
-              type="password"
-              className="form-control"
-              id="password"
-              name="password"
-              value={formData.password}
-              onChange={handleChange}
-              required
-            />
-          </div>
-          <div className="mb-3">
-            <label htmlFor="confirmPassword" className="form-label">Conferma Password</label>
-            <input
-              type="password"
-              className="form-control"
-              id="confirmPassword"
-              name="confirmPassword"
-              value={formData.confirmPassword}
-              onChange={handleChange}
-              required
-            />
-          </div>
-          {errors.length > 0 && (
-            <div className="alert alert-danger">
-              <ul>
-                {errors.map((error, index) => (
-                  <li key={index}>{error}</li>
-                ))}
-              </ul>
+    <div>
+      <Navbar /> {/* Inserisci la Navbar */}
+      <div className="d-flex align-items-center justify-content-center vh-100 ">
+        <div className="card p-4 shadow-lg" style={{ maxWidth: '400px', width: '100%' }}>
+          <h2 className="text-center text-primary mb-4">Registrati su Velara</h2>
+          <form onSubmit={handleSubmit}>
+            <div className="mb-3">
+              <label htmlFor="username" className="form-label">Username</label>
+              <input
+                type="text"
+                className="form-control"
+                id="username"
+                name="username"
+                value={formData.username}
+                onChange={handleChange}
+                required
+              />
             </div>
-          )}
-          <button type="submit" className="btn btn-primary w-100">Registrati</button>
-        </form>
+            <div className="mb-3">
+              <label htmlFor="email" className="form-label">Email</label>
+              <input
+                type="email"
+                className="form-control"
+                id="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                required
+              />
+            </div>
+            <div className="mb-3">
+              <label htmlFor="password" className="form-label">Password</label>
+              <input
+                type="password"
+                className="form-control"
+                id="password"
+                name="password"
+                value={formData.password}
+                onChange={handleChange}
+                required
+              />
+            </div>
+            <div className="mb-3">
+              <label htmlFor="confirmPassword" className="form-label">Conferma Password</label>
+              <input
+                type="password"
+                className="form-control"
+                id="confirmPassword"
+                name="confirmPassword"
+                value={formData.confirmPassword}
+                onChange={handleChange}
+                required
+              />
+            </div>
+            {errors.length > 0 && (
+              <div className="alert alert-danger">
+                <ul>
+                  {errors.map((error, index) => (
+                    <li key={index}>{error}</li>
+                  ))}
+                </ul>
+              </div>
+            )}
+            <button type="submit" className="btn btn-primary w-100">Registrati</button>
+          </form>
+        </div>
       </div>
+      <Footer /> {/* Aggiungi il Footer */}
     </div>
   );
 }

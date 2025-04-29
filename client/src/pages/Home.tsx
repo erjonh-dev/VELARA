@@ -1,10 +1,11 @@
 import React from 'react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
+import image from '../assets/image.png'; 
 
 export default function Home() {
   return (
-    <div style={{ backgroundColor: '#121212', color: '#ffffff' }}>
+    <div >
       {/* Navbar */}
       <Navbar />
 
@@ -19,53 +20,61 @@ export default function Home() {
         </a>
       </div>
 
-      {/* Sezione interattiva */}
       <div className="container py-5">
-        <div className="row">
-          {/* Card 1 */}
-          <div className="col-md-4">
-            <div className="card bg-dark text-white border-0 h-100 hover-card">
-              <div className="card-body text-center">
-                <img src="/icons/assumi.png" alt="Assumi" className="mb-3" style={{ width: '50px' }} />
-                <h5 className="card-title">Assumi</h5>
-                <p className="card-text">
-                  Gestisci assunzioni e simulazioni dei costi in modo semplice e veloce.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          {/* Card 2 */}
-          <div className="col-md-4">
-            <div className="card bg-dark text-white border-0 h-100 hover-card">
-              <div className="card-body text-center">
-                <img src="/icons/paga.png" alt="Paga" className="mb-3" style={{ width: '50px' }} />
-                <h5 className="card-title">Paga</h5>
-                <p className="card-text">
-                  Automatizza la gestione di cedolini e stipendi con facilità.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          {/* Card 3 */}
-          <div className="col-md-4">
-            <div className="card bg-dark text-white border-0 h-100 hover-card">
-              <div className="card-body text-center">
-                <img src="/icons/gestisci.png" alt="Gestisci" className="mb-3" style={{ width: '50px' }} />
-                <h5 className="card-title">Gestisci</h5>
-                <p className="card-text">
-                  Organizza ferie, permessi, e molto altro con un clic.
-                </p>
-              </div>
-            </div>
-          </div>
+  <div className="row">
+    {/* Card 1 - Assumi */}
+    <div className="col-md-4">
+      <div className="card velara-card border-0 h-100 hover-card">
+        <div className="card-body text-center">
+          {/* Emoji sopra il testo */}
+          <h5 className="card-title">
+            <span className="d-block" style={{ fontSize: '3rem' }}>👥</span>
+            Assumi
+          </h5>
+          <p className="card-text">
+            Gestisci assunzioni e simulazioni dei costi in modo semplice e veloce.
+          </p>
         </div>
       </div>
+    </div>
 
-      {/* Nuova sezione */}
+    {/* Card 2 - Paga */}
+    <div className="col-md-4">
+      <div className="card velara-card border-0 h-100 hover-card">
+        <div className="card-body text-center">
+          {/* Emoji sopra il testo */}
+          <h5 className="card-title">
+            <span className="d-block" style={{ fontSize: '3rem' }}>💰</span>
+            Paga
+          </h5>
+          <p className="card-text">
+            Automatizza la gestione di cedolini e stipendi con facilità.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    {/* Card 3 - Gestisci */}
+    <div className="col-md-4">
+      <div className="card velara-card  border-0 h-100 hover-card">
+        <div className="card-body text-center">
+          {/* Emoji sopra il testo */}
+          <h5 className="card-title">
+            <span className="d-block" style={{ fontSize: '3rem' }}>🗂️</span>
+            Gestisci
+          </h5>
+          <p className="card-text">
+            Organizza ferie, permessi, e molto altro con un clic.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+     {/* Nuova sezione */}
       <div className="container-fluid py-5">
-        <div className="container text-center text-white">
+        <div className="container velara-highlight-box text-center">
           <h2 className="mb-4">Perché scegliere Velara?</h2>
           <div className="row align-items-center">
             <div className="col-md-6">
@@ -78,7 +87,7 @@ export default function Home() {
             </div>
             <div className="col-md-6">
               <img
-                src="/client/src/assets/images/screenshot-placeholder.png"
+                src={image}
                 alt="Screenshot Placeholder"
                 className="img-fluid rounded"
                 style={{ boxShadow: '0 4px 20px rgba(0, 0, 0, 0.5)' }}
@@ -87,6 +96,7 @@ export default function Home() {
           </div>
         </div>
       </div>
+
 
       {/* Footer */}
       <Footer />

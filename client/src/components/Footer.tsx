@@ -1,27 +1,36 @@
 import React from 'react';
+import { FaGithub, FaLinkedin } from 'react-icons/fa';
+import '../styles/globals.css'; // Importa il file CSS
 
 export default function Footer() {
   return (
-    <footer style={{ backgroundColor: '#004d40', color: '#ffffff', padding: '40px 0' }}>
+    <footer>
       <div className="container">
         <div className="row">
           <div className="col-md-4">
-            <h5>VELARA</h5>
+            <h3>VELARA</h3>
             <p>Piattaforma HR e Consulente del Lavoro</p>
           </div>
           <div className="col-md-4">
-            <h5>Risorse</h5>
+            <h3>Risorse</h3>
             <ul className="list-unstyled">
-              <li><a href="#" className="text-white text-decoration-none">Blog</a></li>
-              <li><a href="#" className="text-white text-decoration-none">Clienti</a></li>
-              <li><a href="#" className="text-white text-decoration-none">Guide</a></li>
-              <li><a href="#" className="text-white text-decoration-none">Webinar ed eventi</a></li>
+              <li><a href="#">Blog</a></li>
+              <li><a href="#">Clienti</a></li>
+              <li><a href="#">Guide</a></li>
+              <li><a href="#">Webinar ed eventi</a></li>
             </ul>
           </div>
           <div className="col-md-4">
-            <h5>Contatti</h5>
-            <p>Email: <a href="mailto:support@velara.com" className="text-white text-decoration-none">support@velara.com</a></p>
-            <p>Telefono: +39 123 456 789</p>
+            <h3>Contatti</h3>
+            <p>Email: <a href="mailto:support@velara.com">support@velara.com</a></p>
+            <div className="d-flex">
+              <a href="https://github.com/HavolliErjon" target="_blank" rel="noopener noreferrer">
+                <FaGithub size={24} />
+              </a>
+              <a href="https://www.linkedin.com/in/erjon-havolli/" target="_blank" rel="noopener noreferrer">
+                <FaLinkedin size={24} />
+              </a>
+            </div>
           </div>
         </div>
         <div className="text-center mt-3">

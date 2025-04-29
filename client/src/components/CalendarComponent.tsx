@@ -46,19 +46,38 @@ const generateMonthDays = (year: number, month: number) => {
 const CalendarComponent: React.FC = () => {
   const [currentMonth, setCurrentMonth] = useState(new Date().getMonth());
   const [currentYear, setCurrentYear] = useState(new Date().getFullYear());
-  
-  const [attendance, setAttendance] = useState<{ [employeeId: number]: { [day: number]: DayStatus } }>({});
+
+  // Stato separato per ogni mese (chiave: mese/anno)
+  const [attendance, setAttendance] = useState<{
+    [key: string]: { [employeeId: number]: { [day: number]: DayStatus } };
+  }>({});
 
   const daysInMonth = generateMonthDays(currentYear, currentMonth);
 
+  // Funzione per ottenere lo stato di un mese specifico
+  const getAttendanceForMonth = (year: number, month: number) => {
+    const key = `${year}-${month}`;
+    return attendance[key] || {}; // Se il mese non esiste, ritorna un oggetto vuoto
+  };
+
   const handlePreviousMonth = () => {
-    setCurrentMonth((prevMonth) => (prevMonth === 0 ? 11 : prevMonth - 1));
-    if (currentMonth === 0) setCurrentYear((prevYear) => prevYear - 1);
+    setCurrentMonth((prevMonth) => {
+      const newMonth = prevMonth === 0 ? 11 : prevMonth - 1;
+      if (newMonth === 11) {
+        setCurrentYear((prevYear) => prevYear - 1);
+      }
+      return newMonth;
+    });
   };
 
   const handleNextMonth = () => {
-    setCurrentMonth((prevMonth) => (prevMonth === 11 ? 0 : prevMonth + 1));
-    if (currentMonth === 11) setCurrentYear((prevYear) => prevYear + 1);
+    setCurrentMonth((prevMonth) => {
+      const newMonth = prevMonth === 11 ? 0 : prevMonth + 1;
+      if (newMonth === 0) {
+        setCurrentYear((prevYear) => prevYear + 1);
+      }
+      return newMonth;
+    });
   };
 
   const handleMonthChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
@@ -70,52 +89,42 @@ const CalendarComponent: React.FC = () => {
   };
 
   const handleCellClick = (employeeId: number, day: number) => {
-    const currentStatus = attendance[employeeId]?.[day] || null;
-    let nextStatus: DayStatus;
-
-    if (currentStatus === null) {
-      nextStatus = 'presenza';
-    } else if (currentStatus === 'presenza') {
-      nextStatus = 'assenza';
-    } else if (currentStatus === 'assenza') {
-      nextStatus = 'ferie';
-    } else if (currentStatus === 'ferie') {
-      nextStatus = 'malattia';
-    } else {
-      nextStatus = null;  // Ritornare a "vuoto"
-    }
+    const currentStatus = getAttendanceForMonth(currentYear, currentMonth)[employeeId]?.[day] || null;
+    const nextStatus: DayStatus = currentStatus === 'presenza'
+      ? 'assenza'
+      : currentStatus === 'assenza'
+      ? 'ferie'
+      : currentStatus === 'ferie'
+      ? 'malattia'
+      : currentStatus === 'malattia'
+      ? null // Reset to null (empty day)
+      : 'presenza';
 
     const updatedAttendance = { ...attendance };
-    if (!updatedAttendance[employeeId]) {
-      updatedAttendance[employeeId] = {};
+    const monthKey = `${currentYear}-${currentMonth}`;
+
+    if (!updatedAttendance[monthKey]) {
+      updatedAttendance[monthKey] = {};
     }
-    updatedAttendance[employeeId][day] = nextStatus;
+    if (!updatedAttendance[monthKey][employeeId]) {
+      updatedAttendance[monthKey][employeeId] = {};
+    }
+
+    updatedAttendance[monthKey][employeeId][day] = nextStatus;
     setAttendance(updatedAttendance);
   };
 
-  const months = [
-    'Gennaio', 'Febbraio', 'Marzo', 'Aprile', 'Maggio', 'Giugno', 
-    'Luglio', 'Agosto', 'Settembre', 'Ottobre', 'Novembre', 'Dicembre'
-  ];
-
   return (
     <div className="calendar-container">
-      {/* Mese e anno sopra la tabella */}
       <div className="calendar-header">
         <button className="nav-button" onClick={handlePreviousMonth}>
           {'<'}
         </button>
-        
+
         <div className="month-year-selector">
-          <select 
-            value={currentMonth} 
-            onChange={handleMonthChange} 
-            className="month-select"
-          >
-            {months.map((month, index) => (
-              <option key={index} value={index}>
-                {month}
-              </option>
+          <select value={currentMonth} onChange={handleMonthChange} className="month-select">
+            {['Gennaio', 'Febbraio', 'Marzo', 'Aprile', 'Maggio', 'Giugno', 'Luglio', 'Agosto', 'Settembre', 'Ottobre', 'Novembre', 'Dicembre'].map((month, index) => (
+              <option key={index} value={index}>{month}</option>
             ))}
           </select>
           <input 
@@ -133,7 +142,6 @@ const CalendarComponent: React.FC = () => {
       </div>
 
       <div className="calendar-table">
-        {/* Intestazione: Nome + Giorni */}
         <div className="calendar-row header">
           <div className="calendar-cell name-header">Nome</div>
           {daysInMonth.map((day) => (
@@ -141,13 +149,12 @@ const CalendarComponent: React.FC = () => {
           ))}
         </div>
 
-        {/* Dipendenti */}
         {employees.map((employee) => (
           <div className="calendar-row" key={employee.id}>
             <div className="calendar-cell name-cell">{employee.name}</div>
 
             {daysInMonth.map((day) => {
-              const currentStatus = attendance[employee.id]?.[day] || null;
+              const currentStatus = getAttendanceForMonth(currentYear, currentMonth)[employee.id]?.[day] || null;
               return (
                 <div 
                   key={day} 

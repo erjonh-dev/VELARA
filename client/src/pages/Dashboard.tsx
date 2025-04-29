@@ -1,9 +1,10 @@
-// src/pages/Dashboard.tsx
 import React, { useEffect, useState } from 'react';
-import { Routes, Route, Link } from 'react-router-dom';
 import HomeDashboard from '../components/HomeDashboard';
 import Personale from '../components/Personale';
-import Calendario from '../components/Calendario';  // Importa il componente Calendario
+import Calendario from '../components/Calendario';
+import CedoliniPagamenti from '../components/CedoliniPagamenti';
+import Navbar from '../components/Navbar';
+import Footer from '../components/Footer';
 
 const Dashboard: React.FC = () => {
   const [user, setUser] = useState<{ name: string; company: string }>({
@@ -11,7 +12,8 @@ const Dashboard: React.FC = () => {
     company: '',
   });
 
-  // Recupera i dati dell'utente loggato dal localStorage
+  const [activeSection, setActiveSection] = useState<string>('home');
+
   useEffect(() => {
     const loggedInUser = JSON.parse(localStorage.getItem('user') || '{}');
     if (loggedInUser) {
@@ -23,38 +25,55 @@ const Dashboard: React.FC = () => {
   }, []);
 
   return (
-    <div className="container-fluid vh-100 bg-light">
-      <div className="row h-100">
+    <div className="d-flex flex-column min-vh-100">
+      <Navbar />
+
+      <div className="d-flex flex-grow-1">
         {/* Sidebar */}
-        <div className="col-md-2 bg-dark text-white p-3">
-          <h4 className="text-center text-muted">{user.company}</h4> {/* Nome azienda */}
+        <aside className="sidebar-left p-3">
+          <h5 className="text-center text-muted">{user.company}</h5>
           <p className="text-center mt-3">
-            <strong className="text-black">{user.name}</strong> {/* Nome utente */}
-            <br />
-            <span className="text-muted">Admin</span> {/* Ruolo fisso Admin */}
+            <strong className="text-black">{user.name}</strong><br />
+            <span className="text-muted">Admin</span>
           </p>
-          <ul className="nav flex-column">
-            <li className="nav-item">
-              <Link to="/dashboard/home" className="nav-link text-white">Home</Link>
-            </li>
-            <li className="nav-item">
-              <Link to="/dashboard/personale" className="nav-link text-white">Personale</Link>
-            </li>
-            <li className="nav-item">
-              <Link to="/dashboard/calendario" className="nav-link text-white">Calendario</Link> {/* Aggiungi il link per Calendario */}
-            </li>
-          </ul>
-        </div>
+          <nav className="nav flex-column mt-4">
+            <button
+              className={`nav-link text-start ${activeSection === 'home' ? 'active' : ''}`}
+              onClick={() => setActiveSection('home')}
+            >
+              Home
+            </button>
+            <button
+              className={`nav-link text-start ${activeSection === 'personale' ? 'active' : ''}`}
+              onClick={() => setActiveSection('personale')}
+            >
+              Personale
+            </button>
+            <button
+              className={`nav-link text-start ${activeSection === 'calendario' ? 'active' : ''}`}
+              onClick={() => setActiveSection('calendario')}
+            >
+              Calendario
+            </button>
+            <button
+              className={`nav-link text-start ${activeSection === 'cedolini-pagamenti' ? 'active' : ''}`}
+              onClick={() => setActiveSection('cedolini-pagamenti')}
+            >
+              Cedolini e Pagamenti
+            </button>
+          </nav>
+        </aside>
 
         {/* Main Content */}
-        <div className="col-md-10 p-4">
-          <Routes>
-            <Route path="/home" element={<HomeDashboard />} />
-            <Route path="/personale" element={<Personale />} />
-            <Route path="/calendario" element={<Calendario />} /> {/* Aggiungi la route per Calendario */}
-          </Routes>
-        </div>
+        <main className="flex-grow-1 p-4">
+          {activeSection === 'home' && <HomeDashboard />}
+          {activeSection === 'personale' && <Personale />}
+          {activeSection === 'calendario' && <Calendario />}
+          {activeSection === 'cedolini-pagamenti' && <CedoliniPagamenti />}
+        </main>
       </div>
+
+      <Footer />
     </div>
   );
 };
