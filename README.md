@@ -6,11 +6,11 @@ Velara is a web application designed to simplify human resource management for m
 
 ## Features
 
-- Track daily expenses and income
-- Categorize transactions for better financial management
-- View detailed statistics and summaries of financial activities
-- User-friendly interface with dark mode support
-- Responsive design for seamless use on various devices
+- Manage employee data and digital hiring processes
+- Track salaries, reimbursements, absences, and vacation days
+- Integrated calendar for employee attendance
+- Responsive design with dark mode support
+- Admin dashboard for centralized HR control
 
 ## How To Use
 
