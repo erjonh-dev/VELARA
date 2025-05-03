@@ -48,7 +48,7 @@ Check out [Velara](https://velara-rhqt.vercel.app/)
 
 ## Technologies Used
 
-UniCash is built with modern web technologies:
+Velara is built with modern web technologies:
 
 - [React](https://reactjs.org/) - A JavaScript library for building user interfaces
 - [Tailwind CSS](https://tailwindcss.com/) - A utility-first CSS framework
