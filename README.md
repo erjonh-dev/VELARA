@@ -52,7 +52,6 @@ Velara is built with modern web technologies:
 
 - [React](https://reactjs.org/) - A JavaScript library for building user interfaces
 - [Tailwind CSS](https://tailwindcss.com/) - A utility-first CSS framework
-- [shadcn/ui](https://ui.shadcn.com/) - Re-usable components built with Radix UI and Tailwind CSS
 - [Node.js](https://nodejs.org/) - JavaScript runtime built on Chrome's V8 JavaScript engine
 - [Express](https://expressjs.com/) - Fast, unopinionated, minimalist web framework for Node.js
 - [MongoDB](https://www.mongodb.com/) - The application data platform for NoSQL databases
