@@ -1,81 +1,43 @@
-import React, { useEffect, useState } from 'react';
-import HomeDashboard from '../components/HomeDashboard';
-import Personale from '../components/Personale';
-import Calendario from '../components/Calendario';
-import CedoliniPagamenti from '../components/CedoliniPagamenti';
-import Navbar from '../components/Navbar';
-import Footer from '../components/Footer';
+import React from 'react';
+import { Link, Outlet } from 'react-router-dom';
+import Navbar from '../components/Navbar';  // Assicurati che esista
+import Footer from '../components/Footer';  // Assicurati che esista
 
-const Dashboard: React.FC = () => {
-  const [user, setUser] = useState<{ name: string; company: string }>({
-    name: '',
-    company: '',
-  });
-
-  const [activeSection, setActiveSection] = useState<string>('home');
-
-  useEffect(() => {
-    const loggedInUser = JSON.parse(localStorage.getItem('user') || '{}');
-    if (loggedInUser) {
-      setUser({
-        name: loggedInUser.name || 'Nome Utente',
-        company: loggedInUser.company || 'Azienda',
-      });
-    }
-  }, []);
-
+export default function Dashboard() {
   return (
-    <div className="d-flex flex-column min-vh-100">
+    <>
       <Navbar />
 
-      <div className="d-flex flex-grow-1">
-        {/* Sidebar */}
-        <aside className="sidebar-left p-3">
-          <h5 className="text-center text-muted">{user.company}</h5>
-          <p className="text-center mt-3">
-            <strong className="text-black">{user.name}</strong><br />
-            <span className="text-muted">Admin</span>
-          </p>
-          <nav className="nav flex-column mt-4">
-            <button
-              className={`nav-link text-start ${activeSection === 'home' ? 'active' : ''}`}
-              onClick={() => setActiveSection('home')}
-            >
-              Home
-            </button>
-            <button
-              className={`nav-link text-start ${activeSection === 'personale' ? 'active' : ''}`}
-              onClick={() => setActiveSection('personale')}
-            >
-              Personale
-            </button>
-            <button
-              className={`nav-link text-start ${activeSection === 'calendario' ? 'active' : ''}`}
-              onClick={() => setActiveSection('calendario')}
-            >
-              Calendario
-            </button>
-            <button
-              className={`nav-link text-start ${activeSection === 'cedolini-pagamenti' ? 'active' : ''}`}
-              onClick={() => setActiveSection('cedolini-pagamenti')}
-            >
-              Cedolini e Pagamenti
-            </button>
-          </nav>
-        </aside>
+      <div className="container-fluid">
+        <div className="row">
+          {/* Sidebar */}
+          <div className="col-md-3 col-lg-2">
+            <div className="sidebar">
+              <ul className="nav flex-column">
+                <li className="nav-item">
+                  <Link to="/dashboard/home" className="nav-link">Home</Link>
+                </li>
+                <li className="nav-item">
+                  <Link to="/dashboard/personale" className="nav-link">Personale</Link>
+                </li>
+                <li className="nav-item">
+                  <Link to="/dashboard/calendario" className="nav-link">Calendario</Link>
+                </li>
+                <li className="nav-item">
+                  <Link to="/dashboard/cedolini" className="nav-link">Cedolini</Link>
+                </li>
+              </ul>
+            </div>
+          </div>
 
-        {/* Main Content */}
-        <main className="flex-grow-1 p-4">
-          {activeSection === 'home' && <HomeDashboard />}
-          {activeSection === 'personale' && <Personale />}
-          {activeSection === 'calendario' && <Calendario />}
-          {activeSection === 'cedolini-pagamenti' && <CedoliniPagamenti />}
-        </main>
+          {/* Content Area */}
+          <div className="col-md-9 col-lg-10">
+            <Outlet />
+          </div>
+        </div>
       </div>
 
       <Footer />
-    </div>
+    </>
   );
-};
-
-export default Dashboard;
+}

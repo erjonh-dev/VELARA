@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom'; // <-- aggiunto useLocation
 import { Sun, Moon } from 'lucide-react';
 import Logo from '../assets/VELARA.png';
 
@@ -7,16 +7,15 @@ export default function Navbar() {
   const [darkMode, setDarkMode] = useState<boolean>(false);
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
   const navigate = useNavigate();
+  const location = useLocation(); // <-- ottieni la posizione corrente
 
   useEffect(() => {
-    // Dark mode init
     const savedDarkMode = localStorage.getItem('darkMode') === 'true';
     setDarkMode(savedDarkMode);
     if (savedDarkMode) {
       document.body.classList.add('dark-mode');
     }
 
-    // Auth check init
     const token = localStorage.getItem('token');
     setIsAuthenticated(!!token);
   }, []);
@@ -36,6 +35,7 @@ export default function Navbar() {
 
   const handleLogout = () => {
     localStorage.removeItem('token');
+    localStorage.removeItem('user');
     setIsAuthenticated(false);
     navigate('/');
   };
@@ -67,7 +67,7 @@ export default function Navbar() {
         {/* Navbar Links */}
         <div className="d-flex align-items-center">
           <ul className="navbar-nav flex-row">
-            {!isAuthenticated ? (
+            {location.pathname === '/' ? (
               <>
                 <li className="nav-item me-2">
                   <Link to="/login" className="nav-link">Login</Link>
@@ -76,11 +76,11 @@ export default function Navbar() {
                   <Link to="/signup" className="btn btn-primary">Registrati</Link>
                 </li>
               </>
-            ) : (
+            ) : isAuthenticated ? (
               <li className="nav-item">
                 <button className="btn btn-danger" onClick={handleLogout}>Logout</button>
               </li>
-            )}
+            ) : null}
           </ul>
         </div>
       </div>

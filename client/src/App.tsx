@@ -1,27 +1,34 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Signup from './pages/Signup';
-import Home from './pages/Home';
+import HomeDashboard from './components/HomeDashboard';
 import Login from './pages/Login';
 import Dashboard from './pages/Dashboard';
-import Documenti from './pages/Documenti';  // Importa il nuovo componente
-import Calendario from './components/Calendario';  // Importa Calendario dalla cartella components
+import Documenti from './pages/Documenti';
+import Personale from './components/Personale';
+import Cedolini from './components/CedoliniPagamenti';
+import Calendario from './components/Calendario';
+import Home from './pages/Home';  // Aggiungi import per la pagina Home
 
 export default function App() {
   return (
     <Router>
       <Routes>
-        {/* Aggiungi una rotta di default per la home page */}
+        {/* Rotte pubbliche */}
         <Route path="/" element={<Home />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/dashboard/*" element={<Dashboard />} />
-        
-        {/* Aggiungi la rotta per i documenti del dipendente */}
-        <Route path="/documenti/:employeeId" element={<Documenti />} />
 
-        {/* Aggiungi la rotta per il calendario delle presenze e assenze */}
-        <Route path="/calendario" element={<Calendario />} />
+        {/* Rotte protette dashboard */}
+        <Route path="/dashboard" element={<Dashboard />}>
+          <Route path="home" element={<HomeDashboard />} />
+          <Route path="personale" element={<Personale />} />
+          <Route path="cedolini" element={<Cedolini />} />
+          <Route path="calendario" element={<Calendario />} />
+        </Route>
+
+        {/* Rotta separata per documenti */}
+        <Route path="/documenti/:employeeId" element={<Documenti />} />
       </Routes>
     </Router>
   );
