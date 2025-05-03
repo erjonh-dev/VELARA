@@ -4,20 +4,20 @@ export default function HomeDashboard() {
   const [userName, setUserName] = useState<string>('');
 
   useEffect(() => {
-    const loggedInUser = JSON.parse(localStorage.getItem('user') || '{}'); // Recupera i dati dell'utente dal localStorage
+    const loggedInUser = JSON.parse(localStorage.getItem('user') || '{}'); 
     if (loggedInUser && loggedInUser.name) {
-      setUserName(loggedInUser.name); // Imposta il nome dell'utente se disponibile
+      setUserName(loggedInUser.name); 
     }
   }, []);
 
   return (
     <div className="d-flex flex-column min-vh-100">
       <div className="container-fluid flex-grow-1 p-4">
-        <h2>Ciao, {userName || 'Utente'}</h2> {/* Mostra il nome dell'utente, oppure "Utente" se non disponibile */}
+        <h2>Ciao, {userName || 'Utente'}</h2> 
         <p>Benvenuto nel pannello di amministrazione. Qui puoi gestire tutto ciò che riguarda i tuoi dipendenti e la tua azienda.</p>
 
         <div className="row mt-4">
-          {/* Da approvare */}
+          
           <div className="col-md-6">
             <div className="card shadow-sm mb-4">
               <div className="card-body">
@@ -29,7 +29,7 @@ export default function HomeDashboard() {
             </div>
           </div>
 
-          {/* Prossimi eventi */}
+        
           <div className="col-md-6">
             <div className="card shadow-sm mb-4">
               <div className="card-body">
@@ -63,7 +63,7 @@ export default function HomeDashboard() {
             </div>
           </div>
 
-          {/* Chi è in ferie oggi */}
+          
           <div className="col-md-6">
             <div className="card shadow-sm mb-4">
               <div className="card-body">

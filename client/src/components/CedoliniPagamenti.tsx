@@ -1,7 +1,7 @@
 import React from 'react';
 
 const CedoliniPagamenti: React.FC = () => {
-  // Dati dei dipendenti
+
   const dipendenti = [
     { id: 1, nome: 'Mario Rossi', retribuzione: 3000 },
     { id: 2, nome: 'Luigi Bianchi', retribuzione: 2500 },
@@ -27,18 +27,18 @@ const CedoliniPagamenti: React.FC = () => {
     { id: 22, nome: 'Claudio Ricci', retribuzione: 2900 },
   ];
 
-  // Totali
+
   const flussoCassa = 70100;
   const costoTotalePersonale = 52200;
 
-  // Calcolare la somma totale delle retribuzioni
+  
   const totaleRetribuzioni = dipendenti.reduce((sum, dipendente) => sum + dipendente.retribuzione, 0);
 
   return (
     <div className="container">
       <h2 className="mb-4">Cedolini e Pagamenti - Maggio 2024</h2>
 
-      {/* Riepilogo flusso di cassa e costo azienda */}
+      
       <div className="mb-4">
         <h4>Riepilogo del mese</h4>
         <div className="row">
@@ -54,7 +54,7 @@ const CedoliniPagamenti: React.FC = () => {
         </div>
       </div>
 
-      {/* Tabella delle retribuzioni per dipendente */}
+   
       <div>
         <h4>Retribuzioni dipendenti</h4>
         <table className="table table-striped">
@@ -75,7 +75,7 @@ const CedoliniPagamenti: React.FC = () => {
         </table>
       </div>
 
-      {/* Totale delle retribuzioni */}
+     
       <div className="mt-4">
         <strong>Totale delle Retribuzioni:</strong> {totaleRetribuzioni}€
       </div>

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, Outlet } from 'react-router-dom';
-import Navbar from '../components/Navbar';  // Assicurati che esista
-import Footer from '../components/Footer';  // Assicurati che esista
+import Navbar from '../components/Navbar'; 
+import Footer from '../components/Footer';
 
 export default function Dashboard() {
   return (
@@ -10,7 +10,6 @@ export default function Dashboard() {
 
       <div className="container-fluid">
         <div className="row">
-          {/* Sidebar */}
           <div className="col-md-3 col-lg-2">
             <div className="sidebar">
               <ul className="nav flex-column">
@@ -29,8 +28,6 @@ export default function Dashboard() {
               </ul>
             </div>
           </div>
-
-          {/* Content Area */}
           <div className="col-md-9 col-lg-10">
             <Outlet />
           </div>

@@ -16,4 +16,4 @@ app.use('/api/requests', require('./routes/requestRoutes'));
 
 
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`🚀 Server VELARA attivo su porta ${PORT}`));
+app.listen(PORT, () => console.log(`Server VELARA attivo su porta ${PORT}`));

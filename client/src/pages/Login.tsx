@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Navbar from '../components/Navbar'; // Importa il componente Navbar
-import Footer from '../components/Footer'; // Importa il componente Footer
+import Navbar from '../components/Navbar'; 
+import Footer from '../components/Footer';
 
 export default function Login() {
   const [email, setEmail] = useState('');
@@ -23,11 +23,11 @@ export default function Login() {
       if (response.ok) {
         console.log('Dati ricevuti dal backend:', data);
 
-        // Salva i dati dell'utente nel localStorage
+        
         localStorage.setItem('user', JSON.stringify(data.user));
         localStorage.setItem('token', data.token);
 
-        // Reindirizza alla dashboard
+       
         navigate('/dashboard/home');
       } else {
         alert(data.msg || 'Credenziali non valide');
@@ -40,7 +40,7 @@ export default function Login() {
 
   return (
     <div>
-      <Navbar /> {/* Inserisci la Navbar */}
+      <Navbar /> 
       <div className="d-flex align-items-center justify-content-center vh-100">
         <div className="card p-4 shadow-lg" style={{ maxWidth: '400px', width: '100%' }}>
           <h2 className="text-center text-primary mb-4">Accedi a Velara</h2>

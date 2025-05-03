@@ -47,17 +47,17 @@ const CalendarComponent: React.FC = () => {
   const [currentMonth, setCurrentMonth] = useState(new Date().getMonth());
   const [currentYear, setCurrentYear] = useState(new Date().getFullYear());
 
-  // Stato separato per ogni mese (chiave: mese/anno)
+  
   const [attendance, setAttendance] = useState<{
     [key: string]: { [employeeId: number]: { [day: number]: DayStatus } };
   }>({});
 
   const daysInMonth = generateMonthDays(currentYear, currentMonth);
 
-  // Funzione per ottenere lo stato di un mese specifico
+  
   const getAttendanceForMonth = (year: number, month: number) => {
     const key = `${year}-${month}`;
-    return attendance[key] || {}; // Se il mese non esiste, ritorna un oggetto vuoto
+    return attendance[key] || {}; 
   };
 
   const handlePreviousMonth = () => {
@@ -97,7 +97,7 @@ const CalendarComponent: React.FC = () => {
       : currentStatus === 'ferie'
       ? 'malattia'
       : currentStatus === 'malattia'
-      ? null // Reset to null (empty day)
+      ? null 
       : 'presenza';
 
     const updatedAttendance = { ...attendance };

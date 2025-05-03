@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useNavigate, useLocation } from 'react-router-dom'; // <-- aggiunto useLocation
+import { Link, useNavigate, useLocation } from 'react-router-dom'; 
 import { Sun, Moon } from 'lucide-react';
 import Logo from '../assets/VELARA.png';
 
@@ -7,7 +7,7 @@ export default function Navbar() {
   const [darkMode, setDarkMode] = useState<boolean>(false);
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
   const navigate = useNavigate();
-  const location = useLocation(); // <-- ottieni la posizione corrente
+  const location = useLocation(); 
 
   useEffect(() => {
     const savedDarkMode = localStorage.getItem('darkMode') === 'true';
@@ -43,12 +43,12 @@ export default function Navbar() {
   return (
     <nav className={`navbar navbar-expand-lg ${darkMode ? 'navbar-dark bg-dark' : 'navbar-light bg-light'} shadow`} style={{ height: '80px' }}>
       <div className="container-fluid d-flex align-items-center justify-content-between">
-        {/* Logo */}
+        
         <Link to="/" className="navbar-brand d-flex align-items-center">
           <img src={Logo} alt="Velara Logo" className="me-2" style={{ width: '160px', height: '50px' }} />
         </Link>
 
-        {/* Dark Mode Toggle */}
+        
         <button
           className="btn btn-outline-secondary me-3"
           onClick={toggleDarkMode}
@@ -64,7 +64,7 @@ export default function Navbar() {
           {darkMode ? <Sun size={20} /> : <Moon size={20} />}
         </button>
 
-        {/* Navbar Links */}
+        
         <div className="d-flex align-items-center">
           <ul className="navbar-nav flex-row">
             {location.pathname === '/' ? (

@@ -6,10 +6,7 @@ import image from '../assets/image.png';
 export default function Home() {
   return (
     <div >
-      {/* Navbar */}
       <Navbar />
-
-      {/* Contenuto principale */}
       <div className="container text-center py-5">
         <h1 className="display-4 text-primary mb-4">Velara: Il nuovo modo di assumere, gestire e pagare il personale</h1>
         <p className="lead mb-4">
@@ -22,11 +19,11 @@ export default function Home() {
 
       <div className="container py-5">
   <div className="row">
-    {/* Card 1 - Assumi */}
+    
     <div className="col-md-4">
       <div className="card velara-card border-0 h-100 hover-card">
         <div className="card-body text-center">
-          {/* Emoji sopra il testo */}
+         
           <h5 className="card-title">
             <span className="d-block" style={{ fontSize: '3rem' }}>👥</span>
             Assumi
@@ -38,11 +35,11 @@ export default function Home() {
       </div>
     </div>
 
-    {/* Card 2 - Paga */}
+   
     <div className="col-md-4">
       <div className="card velara-card border-0 h-100 hover-card">
         <div className="card-body text-center">
-          {/* Emoji sopra il testo */}
+          
           <h5 className="card-title">
             <span className="d-block" style={{ fontSize: '3rem' }}>💰</span>
             Paga
@@ -54,11 +51,11 @@ export default function Home() {
       </div>
     </div>
 
-    {/* Card 3 - Gestisci */}
+   
     <div className="col-md-4">
       <div className="card velara-card  border-0 h-100 hover-card">
         <div className="card-body text-center">
-          {/* Emoji sopra il testo */}
+         
           <h5 className="card-title">
             <span className="d-block" style={{ fontSize: '3rem' }}>🗂️</span>
             Gestisci

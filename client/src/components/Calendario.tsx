@@ -1,7 +1,6 @@
-// src/components/Calendario.tsx
 import React from 'react';
 import { Container } from 'react-bootstrap';
-import CalendarComponent from './CalendarComponent';  // Importa il componente calendario
+import CalendarComponent from './CalendarComponent';  
 
 const Calendario: React.FC = () => {
   return (

@@ -1,4 +1,3 @@
-/* Sezione evidenziata: "Perché scegliere Velara?" */
 .velara-highlight-box {
   border: 1px solid #cccccc;
   border-radius: 12px;
@@ -8,7 +7,7 @@
   transition: all 0.3s ease;
 }
 
-/* Modalità dark */
+
 body.dark-mode .velara-highlight-box {
   border: 1px solid #444;
   background-color: #1e1e1e;
@@ -16,7 +15,7 @@ body.dark-mode .velara-highlight-box {
   box-shadow: 0 2px 12px rgba(255, 255, 255, 0.05);
 }
 
-/* Lista con ✔ verde */
+
 .velara-highlight-box ul li {
   position: relative;
   padding-left: 25px;
@@ -30,12 +29,12 @@ body.dark-mode .velara-highlight-box {
   font-weight: bold;
 }
 
-/* Transizioni globali */
+
 body {
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* Modalità scura */
+
 body.dark-mode {
   background-color: #121212;
   color: #ffffff;
@@ -50,7 +49,7 @@ body.dark-mode a:hover {
   color: #28A745;
 }
 
-/* Navbar in modalità scura */
+
 body.dark-mode nav {
   background-color: #1e1e1e;
   color: #fff;
@@ -60,13 +59,13 @@ body.dark-mode .navbar-toggler-icon {
   background-color: #ffffff;
 }
 
-/* Footer in modalità scura */
+
 body.dark-mode footer {
   background-color: #004d40;
   color: #ffffff;
 }
 
-/* Sezione "Perché scegliere Velara?" override */
+
 body.dark-mode .container-fluid.text-white {
   color: #000000;
 }
@@ -75,7 +74,7 @@ body.dark-mode .text-start {
   color: #e1e1e1;
 }
 
-/* Input e form in modalità scura */
+
 body.dark-mode input,
 body.dark-mode textarea,
 body.dark-mode select {
@@ -91,7 +90,7 @@ body.dark-mode select:focus {
   box-shadow: 0 0 5px rgba(40, 167, 69, 0.6);
 }
 
-/* Sidebar in modalità scura */
+
 body.dark-mode .sidebar-left {
   background-color: #2a2a2a;
   border-right: 1px solid #444;
@@ -105,13 +104,13 @@ body.dark-mode .sidebar-left .nav-link:hover {
   background-color: #a09090;
 }
 
-/* Main content */
+
 main {
   padding: 2rem;
   width: 100%;
 }
 
-/* Hover card effect */
+
 .hover-card {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
@@ -129,7 +128,7 @@ main {
   transform: scale(1.1);
 }
 
-/* Stili di testo */
+
 .text-muted {
   color: #6c757d !important;
 }
@@ -186,7 +185,7 @@ footer .d-flex a {
   }
 }
 
-/* Sezione registrazione in modalità scura */
+
 body.dark-mode .card {
   background-color: #2a2a2a;
   color: #ffffff;
@@ -201,7 +200,7 @@ body.dark-mode .btn-primary {
   border-color: #84bf91;
 }
 
-/* Calendario */
+
 body.dark-mode .calendar-container {
   overflow-x: auto;
   border: 1px solid #444;
@@ -283,19 +282,19 @@ body.dark-mode .day-cell.malattia {
   background-color: #7f8c8d;
 }
 
-/* Card interattive */
+
 .card.bg-light {
   background-color: #ffffff;
   color: #333;
 }
 
-/* Modalità scura */
+
 body.dark-mode .card.bg-light {
   background-color: #1e1e1e !important;
   color: #f1f1f1;
 }
 
-/* Hover card effect */
+
 .hover-card {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
@@ -305,23 +304,21 @@ body.dark-mode .card.bg-light {
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
 }
 
-/* ========== NUOVA SEZIONE PER CARD CUSTOM VEARA ========== */
 
-/* Light mode (default) */
 .velara-card {
-  background-color: #f2f7fcc6; /* un grigio molto chiaro */
+  background-color: #f2f7fcc6; 
   color: #212529;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.17);
   border-radius: 12px;
   transition: all 0.3s ease;
 }
 
-/* Hover effect */
+
 .velara-card:hover {
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
 }
 
-/* Dark mode */
+
 body.dark-mode .velara-card {
   background-color: #2c2c2c;
   color: #f1f1f1;

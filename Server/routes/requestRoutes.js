@@ -3,15 +3,13 @@ const router = express.Router();
 const auth = require('../middleware/auth');
 const Request = require('../models/Request');
 
-// @route   POST /api/requests
-// @desc    Invia una nuova richiesta
-// @access  Privato (protetto da JWT)
+
 router.post('/', auth, async (req, res) => {
   const { tipo, descrizione } = req.body;
 
   try {
     const newRequest = new Request({
-      user: req.user.id, // Assicurati che sia l'id e non l'oggetto intero
+      user: req.user.id, 
       tipo,
       descrizione
     });
@@ -24,9 +22,6 @@ router.post('/', auth, async (req, res) => {
   }
 });
 
-// @route   GET /api/requests
-// @desc    Mostra le richieste dell’utente loggato
-// @access  Privato (protetto da JWT)
 router.get('/', auth, async (req, res) => {
   try {
     const requests = await Request.find({ user: req.user.id }).sort({ data: -1 });

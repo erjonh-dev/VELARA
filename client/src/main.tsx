@@ -1,7 +1,7 @@
-import 'bootstrap/dist/css/bootstrap.min.css'; // Importa Bootstrap
+import 'bootstrap/dist/css/bootstrap.min.css'; 
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './styles/globals.css'; // Mantieni i tuoi stili personalizzati
+import './styles/globals.css'; 
 import App from './App';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(

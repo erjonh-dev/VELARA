@@ -40,7 +40,7 @@ export default function Personale() {
   const [filterRole, setFilterRole] = useState('');
   const [filterContractType, setFilterContractType] = useState('');
 
-  // Aggiungi dipendente
+ 
   const handleAddEmployee = () => {
     if (newEmployee.name && newEmployee.role) {
       setEmployees([...employees, { id: employees.length + 1, ...newEmployee }]);
@@ -48,7 +48,7 @@ export default function Personale() {
     }
   };
 
-  // Filtra dipendenti
+ 
   const filteredEmployees = employees.filter((emp) => {
     const matchesSearch = emp.name.toLowerCase().includes(searchTerm.toLowerCase());
     const matchesRole = filterRole ? emp.role.toLowerCase().includes(filterRole.toLowerCase()) : true;
@@ -60,7 +60,7 @@ export default function Personale() {
     <div className="container mt-4">
       <h2>Elenco Dipendenti</h2>
 
-      {/* Barra di ricerca */}
+      
       <div className="mb-3">
         <input
           type="text"
@@ -71,7 +71,7 @@ export default function Personale() {
         />
       </div>
 
-      {/* Filtra per mansione */}
+     
       <div className="mb-3">
         <input
           type="text"
@@ -82,7 +82,7 @@ export default function Personale() {
         />
       </div>
 
-      {/* Filtra per tipo di contratto */}
+     
       <div className="mb-3">
         <select
           className="form-control"
@@ -95,7 +95,7 @@ export default function Personale() {
         </select>
       </div>
 
-      {/* Tabella dipendenti */}
+      
       <table className="table table-striped">
         <thead>
           <tr>
@@ -118,7 +118,7 @@ export default function Personale() {
               <td>{employee.endOfContract || '-'}</td>
               <td>{employee.contractType}</td>
               <td>
-                {/* Link ai documenti del dipendente */}
+                
                 <Link to={`/documenti/${employee.id}`} className="btn btn-primary">
                   Visualizza Cedolino
                 </Link>
