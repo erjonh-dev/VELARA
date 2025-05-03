@@ -2,7 +2,7 @@
 
 ## Overview
 
-Velara is a web application designed to simplify human resource management for modern companies. It offers tools for hiring, payroll, employee data management, and digital contracts—all in one intuitive platform. Velara streamlines HR processes, helping businesses save time, stay compliant, and support their teams more efficiently.
+Velara simplifies HR management with features for hiring, payroll, employee records, and digital contracts. It streamlines processes, ensuring efficiency and compliance for modern businesses.
 
 ## Features
 
