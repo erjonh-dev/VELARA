@@ -67,5 +67,5 @@ This project is open source and available under the [MIT License](LICENSE).
 
 ---
 
-> Created by [Havolli Erjon](http.. Sito mio) &nbsp;&middot;&nbsp;
+> Created by [Havolli Erjon](https://havollierjon.github.io/Porfolio/) &nbsp;&middot;&nbsp;
 > For issues and feature requests, please [open an issue](https://github.com/francescovitale-dev/unicash/issues)
