@@ -57,10 +57,6 @@ UniCash is built with modern web technologies:
 - [Express](https://expressjs.com/) - Fast, unopinionated, minimalist web framework for Node.js
 - [MongoDB](https://www.mongodb.com/) - The application data platform for NoSQL databases
 
-## Contributing
-
-Contributions to UniCash are welcome! Please feel free to submit a Pull Request.
-
 ## License
 
 This project is open source and available under the [MIT License](LICENSE).
