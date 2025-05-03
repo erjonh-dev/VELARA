@@ -44,7 +44,7 @@ To use Velara, follow these steps:
 
 ## Demo
 
-Check out [UniCash](https://uni-cash.netlify.app/)
+Check out [Velara]([https://uni-cash.netlify.app/](https://velara-rhqt.vercel.app/))
 
 ## Technologies Used
 
