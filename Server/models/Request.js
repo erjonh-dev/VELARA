@@ -19,7 +19,7 @@ const RequestSchema = new mongoose.Schema({
   },
   stato: {
     type: String,
-    default: 'in attesa' // o "approvata", "rifiutata"
+    default: 'in attesa' 
   }
 });
 
