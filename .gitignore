@@ -7,30 +7,26 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-# Ignore environment files
+# Environment files (env variables should never be committed)
 .env
 .env.local
 .env.*.local
-client/.env       
-server/.env       
-
-
+client/.env
+server/.env
 
 # Node modules
 node_modules/
+client/node_modules/
+server/node_modules/
 
 # Build output
 dist/
 dist-ssr/
 build/
+client/dist/
+server/dist/
 
-# Local environment files
-*.local
-.env
-.env.local
-.env.*.local
-
-# Editor directories and files
+# Editor & system files
 .vscode/
 !.vscode/extensions.json
 .idea/
@@ -40,12 +36,3 @@ build/
 *.njsproj
 *.sln
 *.sw?
-
-# Specific to client
-client/node_modules/
-client/dist/
-
-# Specific to server
-server/node_modules/
-server/dist/
-node_modules
