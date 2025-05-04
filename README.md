@@ -34,13 +34,32 @@ To use Velara, follow these steps:
     npm install
     ```
 
-4. Start the development server:
+4. Create `.env` files for the client and server by using the provided `.env.example` files.
+
+    - **Client**: Go to the `client` folder and create a `.env` file using the `client/.env.example` template.
+    - **Server**: Go to the `server` folder and create a `.env` file using the `server/.env.example` template.
+
+    In the `client/.env` file, you'll need to add the following variable:
+
+    ```env
+    VITE_API_URL=your_backend_api_url
+    ```
+
+    In the `server/.env` file, you'll need to add these variables:
+
+    ```env
+    PORT=your_server_port
+    MONGO_URI=your_mongo_connection_string
+    JWT_SECRET=your_jwt_secret
+    ```
+
+5. Start the development server:
 
     ```bash
     npm run dev
     ```
 
-5. Access the application through your web browser at `http://localhost:3000`.
+6. Access the application through your web browser at `http://localhost:3000`.
 
 ## Demo
 
