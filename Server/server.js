@@ -7,11 +7,17 @@ dotenv.config();
 connectDB();
 
 const app = express();
-app.use(cors());
+
+
+const corsOptions = {
+  origin: "https://velara-drab.vercel.app",
+  credentials: true
+};
+
+app.use(cors(corsOptions));
 app.use(express.json());
 
 app.use('/api', require('./routes/authRoutes'));
-
 app.use('/api/requests', require('./routes/requestRoutes'));
 
 const PORT = process.env.PORT || 5000;
