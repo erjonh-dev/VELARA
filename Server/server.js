@@ -23,11 +23,13 @@ const corsOptions = {
       callback(new Error("Not allowed by CORS"));
     }
   },
-  credentials: true
+  credentials: true,
+  optionsSuccessStatus: 200
 };
 
 // Middleware
 app.use(cors(corsOptions));
+app.options("*", cors(corsOptions)); // <--- AGGIUNTA IMPORTANTE
 app.use(express.json());
 
 // Rotte
