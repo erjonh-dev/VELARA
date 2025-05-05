@@ -73,7 +73,7 @@ export default function Navbar() {
                   <Link to="/login" className="nav-link">Login</Link>
                 </li>
                 <li className="nav-item">
-                  <Link to="/signup" className="btn btn-primary">Registrati</Link>
+                  <Link to="/signup" className="btn btn-primary">Sign Up</Link>
                 </li>
               </>
             ) : isAuthenticated ? (

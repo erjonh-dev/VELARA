@@ -25,10 +25,10 @@ export default function Signup() {
     const newErrors: string[] = [];
 
     if (formData.password !== formData.confirmPassword) {
-      newErrors.push('Le password non corrispondono.');
+      newErrors.push('Passwords do not match.');
     }
     if (formData.password.length < 8) {
-      newErrors.push('La password deve contenere almeno 8 caratteri.');
+      newErrors.push('Password must be at least 8 characters long.');
     }
 
     setErrors(newErrors);
@@ -48,15 +48,15 @@ export default function Signup() {
         });
 
         if (response.ok) {
-          console.log('Registrazione completata');
+          console.log('Registration completed');
           navigate('/login'); 
         } else {
           const error = await response.json();
-          setErrors([error.msg || 'Errore durante la registrazione.']);
+          setErrors([error.msg || 'Error during registration.']);
         }
       } catch (err) {
-        console.error('Errore di rete:', err);
-        setErrors(['Errore di rete. Riprova più tardi.']);
+        console.error('Network error:', err);
+        setErrors(['Network error. Please try again later.']);
       }
     }
   };
@@ -64,9 +64,9 @@ export default function Signup() {
   return (
     <div>
       <Navbar /> 
-      <div className="d-flex align-items-center justify-content-center vh-100 ">
+      <div className="d-flex align-items-center justify-content-center vh-100">
         <div className="card p-4 shadow-lg" style={{ maxWidth: '400px', width: '100%' }}>
-          <h2 className="text-center text-primary mb-4">Registrati su Velara</h2>
+          <h2 className="text-center text-primary mb-4">Sign up for Velara</h2>
           <form onSubmit={handleSubmit}>
             <div className="mb-3">
               <label htmlFor="username" className="form-label">Username</label>
@@ -105,7 +105,7 @@ export default function Signup() {
               />
             </div>
             <div className="mb-3">
-              <label htmlFor="confirmPassword" className="form-label">Conferma Password</label>
+              <label htmlFor="confirmPassword" className="form-label">Confirm Password</label>
               <input
                 type="password"
                 className="form-control"
@@ -125,7 +125,7 @@ export default function Signup() {
                 </ul>
               </div>
             )}
-            <button type="submit" className="btn btn-primary w-100">Registrati</button>
+            <button type="submit" className="btn btn-primary w-100">Sign Up</button>
           </form>
         </div>
       </div>

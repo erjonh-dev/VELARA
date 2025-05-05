@@ -6,20 +6,20 @@ const RequestSchema = new mongoose.Schema({
     ref: 'User',
     required: true
   },
-  tipo: {
+  type: {
     type: String,
     required: true
   },
-  descrizione: {
+  description: {
     type: String
   },
-  data: {
+  date: {
     type: Date,
     default: Date.now
   },
-  stato: {
+  status: {
     type: String,
-    default: 'in attesa' 
+    default: 'pending'
   }
 });
 

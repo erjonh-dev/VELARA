@@ -17,13 +17,13 @@ export default function Dashboard() {
                   <Link to="/dashboard/home" className="nav-link">Home</Link>
                 </li>
                 <li className="nav-item">
-                  <Link to="/dashboard/personale" className="nav-link">Personale</Link>
+                  <Link to="/dashboard/employees" className="nav-link">Employees</Link>
                 </li>
                 <li className="nav-item">
-                  <Link to="/dashboard/calendario" className="nav-link">Calendario</Link>
+                  <Link to="/dashboard/calendar" className="nav-link">Calendar</Link>
                 </li>
                 <li className="nav-item">
-                  <Link to="/dashboard/cedolini" className="nav-link">Cedolini</Link>
+                  <Link to="/dashboard/payslips" className="nav-link">Payslips</Link>
                 </li>
               </ul>
             </div>

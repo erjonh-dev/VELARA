@@ -1,10 +1,8 @@
-
 .calendar-container {
   overflow-x: auto;
   border: 1px solid #ddd;
   font-family: 'Arial', sans-serif;
 }
-
 
 .calendar-header {
   display: flex;
@@ -43,7 +41,6 @@
   background-color: #ddd;
 }
 
-
 .calendar-table {
   min-width: 1200px;
 }
@@ -63,7 +60,6 @@
   font-size: 13px;
 }
 
-
 .name-header {
   background-color: #f5f5f5;
   font-weight: bold;
@@ -77,7 +73,6 @@
   text-align: left;
   padding-left: 10px;
 }
-
 
 body.dark-mode .name-header {
   background-color: #222 !important;
@@ -98,7 +93,6 @@ body.dark-mode .name-cell {
   background-color: #fff;
 }
 
-
 .day-cell:hover {
   background-color: #f9f9f9;
   cursor: pointer;
@@ -115,18 +109,18 @@ body.dark-mode .name-cell {
   margin: 0 5px;
 }
 
-.day-cell.presenza {
+.day-cell.presence {
   background-color: #d4edda;
 }
 
-.day-cell.assenza {
+.day-cell.absence {
   background-color: #f8d7da;
 }
 
-.day-cell.ferie {
+.day-cell.vacation {
   background-color: #fff3cd;
 }
 
-.day-cell.malattia {
+.day-cell.illness {
   background-color: #f1f1f1;
 }

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 
-export default function Documenti() {
+export default function Documents() {
   const { id } = useParams();
   const [documents, setDocuments] = useState<File[]>([]);
 
@@ -14,24 +14,24 @@ export default function Documenti() {
 
   return (
     <div className="container mt-4">
-      <h2>Cedolino del Dipendente {id}</h2>
-      <p>Visualizzazione del cedolino per il dipendente con ID: {id}</p>
+      <h2>Employee Payslip {id}</h2>
+      <p>Viewing the payslip for the employee with ID: {id}</p>
 
       <div className="mb-3">
-        <label htmlFor="uploadCedolino" className="form-label">
-          Carica nuovo Cedolino:
+        <label htmlFor="uploadPayslip" className="form-label">
+          Upload New Payslip:
         </label>
         <input
           type="file"
           className="form-control"
-          id="uploadCedolino"
+          id="uploadPayslip"
           onChange={handleFileUpload}
         />
       </div>
 
-      <h4>Documenti caricati:</h4>
+      <h4>Uploaded Documents:</h4>
       {documents.length === 0 ? (
-        <p>Nessun documento caricato.</p>
+        <p>No documents uploaded.</p>
       ) : (
         <ul>
           {documents.map((doc, index) => (
@@ -43,7 +43,7 @@ export default function Documenti() {
                 download={doc.name} 
                 className="btn btn-sm btn-secondary ms-2"
               >
-                Scarica
+                Download
               </a>
             </li>
           ))}

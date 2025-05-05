@@ -5,81 +5,75 @@ import image from '../assets/image.png';
 
 export default function Home() {
   return (
-    <div >
+    <div>
       <Navbar />
       <div className="container text-center py-5">
-        <h1 className="display-4 text-primary mb-4">Velara: Il nuovo modo di assumere, gestire e pagare il personale</h1>
+        <h1 className="display-4 text-primary mb-4">Velara: The New Way to Hire, Manage, and Pay Employees</h1>
         <p className="lead mb-4">
-          Automatizza i processi HR e semplifica il pagamento degli stipendi, affiancato da un Consulente del Lavoro dedicato.
+          Automate HR processes and simplify payroll management, alongside a dedicated Labor Consultant.
         </p>
         <a href="/signup" className="btn btn-success btn-lg">
-          Prova Velara
+          Try Velara
         </a>
       </div>
 
       <div className="container py-5">
-  <div className="row">
-    
-    <div className="col-md-4">
-      <div className="card velara-card border-0 h-100 hover-card">
-        <div className="card-body text-center">
-         
-          <h5 className="card-title">
-            <span className="d-block" style={{ fontSize: '3rem' }}>👥</span>
-            Assumi
-          </h5>
-          <p className="card-text">
-            Gestisci assunzioni e simulazioni dei costi in modo semplice e veloce.
-          </p>
+        <div className="row">
+          <div className="col-md-4">
+            <div className="card velara-card border-0 h-100 hover-card">
+              <div className="card-body text-center">
+                <h5 className="card-title">
+                  <span className="d-block" style={{ fontSize: '3rem' }}>👥</span>
+                  Hire
+                </h5>
+                <p className="card-text">
+                  Manage hiring and cost simulations quickly and easily.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div className="col-md-4">
+            <div className="card velara-card border-0 h-100 hover-card">
+              <div className="card-body text-center">
+                <h5 className="card-title">
+                  <span className="d-block" style={{ fontSize: '3rem' }}>💰</span>
+                  Pay
+                </h5>
+                <p className="card-text">
+                  Automate the management of payslips and salaries with ease.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div className="col-md-4">
+            <div className="card velara-card border-0 h-100 hover-card">
+              <div className="card-body text-center">
+                <h5 className="card-title">
+                  <span className="d-block" style={{ fontSize: '3rem' }}>🗂️</span>
+                  Manage
+                </h5>
+                <p className="card-text">
+                  Organize vacations, leaves, and much more with a click.
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
 
-   
-    <div className="col-md-4">
-      <div className="card velara-card border-0 h-100 hover-card">
-        <div className="card-body text-center">
-          
-          <h5 className="card-title">
-            <span className="d-block" style={{ fontSize: '3rem' }}>💰</span>
-            Paga
-          </h5>
-          <p className="card-text">
-            Automatizza la gestione di cedolini e stipendi con facilità.
-          </p>
-        </div>
-      </div>
-    </div>
-
-   
-    <div className="col-md-4">
-      <div className="card velara-card  border-0 h-100 hover-card">
-        <div className="card-body text-center">
-         
-          <h5 className="card-title">
-            <span className="d-block" style={{ fontSize: '3rem' }}>🗂️</span>
-            Gestisci
-          </h5>
-          <p className="card-text">
-            Organizza ferie, permessi, e molto altro con un clic.
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-     {/* Nuova sezione */}
+      {/* New Section */}
       <div className="container-fluid py-5">
         <div className="container velara-highlight-box text-center">
-          <h2 className="mb-4">Perché scegliere Velara?</h2>
+          <h2 className="mb-4">Why Choose Velara?</h2>
           <div className="row align-items-center">
             <div className="col-md-6">
               <ul className="list-unstyled text-start">
-                <li className="mb-3">✔ Automatizza i processi HR</li>
-                <li className="mb-3">✔ Gestione semplificata di stipendi e cedolini</li>
-                <li className="mb-3">✔ Affiancamento di un consulente del lavoro</li>
-                <li className="mb-3">✔ Soluzioni personalizzate per ogni azienda</li>
+                <li className="mb-3">✔ Automates HR processes</li>
+                <li className="mb-3">✔ Simplified salary and payslip management</li>
+                <li className="mb-3">✔ Support from a labor consultant</li>
+                <li className="mb-3">✔ Customized solutions for each company</li>
               </ul>
             </div>
             <div className="col-md-6">
@@ -93,7 +87,6 @@ export default function Home() {
           </div>
         </div>
       </div>
-
 
       {/* Footer */}
       <Footer />

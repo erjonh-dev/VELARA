@@ -31,7 +31,7 @@ const employees: Employee[] = [
   { id: 22, name: 'Claudio Ricci' }
 ];
 
-type DayStatus = 'presenza' | 'assenza' | 'ferie' | 'malattia' | null;
+type DayStatus = 'present' | 'absent' | 'vacation' | 'sick' | null;
 
 const generateMonthDays = (year: number, month: number) => {
   const date = new Date(year, month, 1);
@@ -47,14 +47,12 @@ const CalendarComponent: React.FC = () => {
   const [currentMonth, setCurrentMonth] = useState(new Date().getMonth());
   const [currentYear, setCurrentYear] = useState(new Date().getFullYear());
 
-  
   const [attendance, setAttendance] = useState<{
     [key: string]: { [employeeId: number]: { [day: number]: DayStatus } };
   }>({});
 
   const daysInMonth = generateMonthDays(currentYear, currentMonth);
 
-  
   const getAttendanceForMonth = (year: number, month: number) => {
     const key = `${year}-${month}`;
     return attendance[key] || {}; 
@@ -90,15 +88,15 @@ const CalendarComponent: React.FC = () => {
 
   const handleCellClick = (employeeId: number, day: number) => {
     const currentStatus = getAttendanceForMonth(currentYear, currentMonth)[employeeId]?.[day] || null;
-    const nextStatus: DayStatus = currentStatus === 'presenza'
-      ? 'assenza'
-      : currentStatus === 'assenza'
-      ? 'ferie'
-      : currentStatus === 'ferie'
-      ? 'malattia'
-      : currentStatus === 'malattia'
+    const nextStatus: DayStatus = currentStatus === 'present'
+      ? 'absent'
+      : currentStatus === 'absent'
+      ? 'vacation'
+      : currentStatus === 'vacation'
+      ? 'sick'
+      : currentStatus === 'sick'
       ? null 
-      : 'presenza';
+      : 'present';
 
     const updatedAttendance = { ...attendance };
     const monthKey = `${currentYear}-${currentMonth}`;
@@ -123,7 +121,7 @@ const CalendarComponent: React.FC = () => {
 
         <div className="month-year-selector">
           <select value={currentMonth} onChange={handleMonthChange} className="month-select">
-            {['Gennaio', 'Febbraio', 'Marzo', 'Aprile', 'Maggio', 'Giugno', 'Luglio', 'Agosto', 'Settembre', 'Ottobre', 'Novembre', 'Dicembre'].map((month, index) => (
+            {['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'].map((month, index) => (
               <option key={index} value={index}>{month}</option>
             ))}
           </select>
@@ -143,7 +141,7 @@ const CalendarComponent: React.FC = () => {
 
       <div className="calendar-table">
         <div className="calendar-row header">
-          <div className="calendar-cell name-header">Nome</div>
+          <div className="calendar-cell name-header">Name</div>
           {daysInMonth.map((day) => (
             <div key={day} className="calendar-cell day-header">{day}</div>
           ))}
@@ -162,10 +160,10 @@ const CalendarComponent: React.FC = () => {
                   onClick={() => handleCellClick(employee.id, day)}
                 >
                   <div className="status-indicator">
-                    {currentStatus === 'presenza' && <span className="status-icon presence">✔️</span>}
-                    {currentStatus === 'assenza' && <span className="status-icon absence">❌</span>}
-                    {currentStatus === 'ferie' && <span className="status-icon holiday">🌴</span>}
-                    {currentStatus === 'malattia' && <span className="status-icon sick">🤒</span>}
+                    {currentStatus === 'present' && <span className="status-icon presence">✔️</span>}
+                    {currentStatus === 'absent' && <span className="status-icon absence">❌</span>}
+                    {currentStatus === 'vacation' && <span className="status-icon holiday">🌴</span>}
+                    {currentStatus === 'sick' && <span className="status-icon sick">🤒</span>}
                   </div>
                 </div>
               );

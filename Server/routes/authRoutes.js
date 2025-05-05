@@ -4,20 +4,19 @@ const jwt = require('jsonwebtoken');
 const User = require('../models/User');  
 const router = express.Router();
 
-
 const authMiddleware = require('../middleware/authMiddleware');  
 
-
+// User registration route
 router.post('/register', async (req, res) => {
   const { name, email, password } = req.body;
 
   if (!name || !email || !password) {
-    return res.status(400).json({ msg: 'Tutti i campi sono obbligatori.' });
+    return res.status(400).json({ msg: 'All fields are required.' });
   }
 
   try {
     const userExists = await User.findOne({ email });
-    if (userExists) return res.status(400).json({ msg: 'Utente già registrato' });
+    if (userExists) return res.status(400).json({ msg: 'User already registered' });
 
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
@@ -29,34 +28,31 @@ router.post('/register', async (req, res) => {
     });
 
     await newUser.save();
-    res.status(201).json({ msg: 'Utente registrato con successo' });
+    res.status(201).json({ msg: 'User successfully registered' });
   } catch (err) {
     console.error(err);
-    res.status(500).json({ msg: 'Errore nel server' });
+    res.status(500).json({ msg: 'Server error' });
   }
 });
 
-
+// User login route
 router.post('/login', async (req, res) => {
   const { usernameOrEmail, password } = req.body;
 
   if (!usernameOrEmail || !password) {
-    return res.status(400).json({ msg: 'Tutti i campi sono obbligatori.' });
+    return res.status(400).json({ msg: 'All fields are required.' });
   }
 
   try {
-    
     const user = await User.findOne({
       $or: [{ email: usernameOrEmail }, { username: usernameOrEmail }],
     });
 
-    if (!user) return res.status(400).json({ msg: 'Utente non trovato' });
+    if (!user) return res.status(400).json({ msg: 'User not found' });
 
-   
     const isMatch = await bcrypt.compare(password, user.password);
-    if (!isMatch) return res.status(400).json({ msg: 'Password errata' });
+    if (!isMatch) return res.status(400).json({ msg: 'Incorrect password' });
 
-    
     const payload = {
       user: {
         id: user.id,
@@ -65,7 +61,6 @@ router.post('/login', async (req, res) => {
 
     const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '1h' });
 
-    
     res.json({
       token,
       user: {
@@ -78,16 +73,16 @@ router.post('/login', async (req, res) => {
     });
   } catch (err) {
     console.error(err);
-    res.status(500).json({ msg: 'Errore nel server' });
+    res.status(500).json({ msg: 'Server error' });
   }
 });
 
-
+// Fetching user data
 router.get('/user', authMiddleware, async (req, res) => {
   try {
     const user = await User.findById(req.user.id).select('name email role company'); 
 
-    if (!user) return res.status(404).json({ msg: 'Utente non trovato' });
+    if (!user) return res.status(404).json({ msg: 'User not found' });
 
     res.json({
       name: user.name,
@@ -97,7 +92,7 @@ router.get('/user', authMiddleware, async (req, res) => {
     });
   } catch (err) {
     console.error(err);
-    res.status(500).json({ msg: 'Errore nel server' });
+    res.status(500).json({ msg: 'Server error' });
   }
 });
 
