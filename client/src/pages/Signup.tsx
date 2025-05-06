@@ -35,6 +35,11 @@ export default function Signup() {
 
     if (newErrors.length === 0) {
       try {
+        console.log('Dati inviati al server:', {
+          name: formData.username,
+          email: formData.email,
+          password: formData.password,
+        });
         const response = await fetch(`${import.meta.env.VITE_API_URL}/api/register`, {
           method: 'POST',
           headers: {
