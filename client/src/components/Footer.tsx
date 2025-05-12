@@ -24,7 +24,7 @@ export default function Footer() {
             <h3>Contact</h3>
             <p>Email: <a href="mailto:support@velara.com">support@velara.com</a></p>
             <div className="d-flex">
-              <a href="https://github.com/HavolliErjon" target="_blank" rel="noopener noreferrer">
+              <a href="https://github.com/erjonh-dev" target="_blank" rel="noopener noreferrer">
                 <FaGithub size={24} />
               </a>
               <a href="https://www.linkedin.com/in/erjon-havolli/" target="_blank" rel="noopener noreferrer">
