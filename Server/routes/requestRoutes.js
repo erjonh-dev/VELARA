@@ -1,36 +1,24 @@
 const express = require('express');
+const { check } = require('express-validator');
 const router = express.Router();
-const auth = require('../middleware/auth');
-const Request = require('../models/Request');
+const auth = require('../middleware/authMiddleware');
+const {
+  createRequest,
+  getUserRequests,
+} = require('../controllers/requestController');
 
-// Create a new request
-router.post('/', auth, async (req, res) => {
-  const { tipo, descrizione } = req.body;
 
-  try {
-    const newRequest = new Request({
-      user: req.user.id, 
-      tipo,
-      descrizione
-    });
+router.post(
+  '/',
+  auth,
+  [
+    check('type', 'Type is required').not().isEmpty(),
+    check('description', 'Description must be at least 5 characters long').isLength({ min: 5 }),
+  ],
+  createRequest
+);
 
-    const saved = await newRequest.save();
-    res.json(saved);
-  } catch (err) {
-    console.error('Error in POST /api/requests:', err.message);
-    res.status(500).send('Server error');
-  }
-});
 
-// Get all requests for the authenticated user
-router.get('/', auth, async (req, res) => {
-  try {
-    const requests = await Request.find({ user: req.user.id }).sort({ data: -1 });
-    res.json(requests);
-  } catch (err) {
-    console.error('Error in GET /api/requests:', err.message);
-    res.status(500).send('Server error');
-  }
-});
+router.get('/', auth, getUserRequests);
 
 module.exports = router;

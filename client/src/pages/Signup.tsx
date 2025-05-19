@@ -1,16 +1,17 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Navbar from '../components/Navbar'; 
-import Footer from '../components/Footer'; 
+import Navbar from '../components/Navbar';
+import Footer from '../components/Footer';
 
 export default function Signup() {
   const [formData, setFormData] = useState({
     username: '',
-    email: '',  
+    email: '',
     password: '',
     confirmPassword: '',
   });
   const [errors, setErrors] = useState<string[]>([]);
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -34,12 +35,8 @@ export default function Signup() {
     setErrors(newErrors);
 
     if (newErrors.length === 0) {
+      setLoading(true);
       try {
-        console.log('Dati inviati al server:', {
-          name: formData.username,
-          email: formData.email,
-          password: formData.password,
-        });
         const response = await fetch(`${import.meta.env.VITE_API_URL}/api/register`, {
           method: 'POST',
           headers: {
@@ -53,22 +50,22 @@ export default function Signup() {
         });
 
         if (response.ok) {
-          console.log('Registration completed');
-          navigate('/login'); 
+          navigate('/login');
         } else {
           const error = await response.json();
           setErrors([error.msg || 'Error during registration.']);
         }
-      } catch (err) {
-        console.error('Network error:', err);
+      } catch {
         setErrors(['Network error. Please try again later.']);
+      } finally {
+        setLoading(false);
       }
     }
   };
 
   return (
     <div>
-      <Navbar /> 
+      <Navbar />
       <div className="d-flex align-items-center justify-content-center vh-100">
         <div className="card p-4 shadow-lg" style={{ maxWidth: '400px', width: '100%' }}>
           <h2 className="text-center text-primary mb-4">Sign up for Velara</h2>
@@ -83,6 +80,7 @@ export default function Signup() {
                 value={formData.username}
                 onChange={handleChange}
                 required
+                disabled={loading}
               />
             </div>
             <div className="mb-3">
@@ -95,6 +93,7 @@ export default function Signup() {
                 value={formData.email}
                 onChange={handleChange}
                 required
+                disabled={loading}
               />
             </div>
             <div className="mb-3">
@@ -107,6 +106,7 @@ export default function Signup() {
                 value={formData.password}
                 onChange={handleChange}
                 required
+                disabled={loading}
               />
             </div>
             <div className="mb-3">
@@ -119,8 +119,10 @@ export default function Signup() {
                 value={formData.confirmPassword}
                 onChange={handleChange}
                 required
+                disabled={loading}
               />
             </div>
+
             {errors.length > 0 && (
               <div className="alert alert-danger">
                 <ul>
@@ -130,7 +132,10 @@ export default function Signup() {
                 </ul>
               </div>
             )}
-            <button type="submit" className="btn btn-primary w-100">Sign Up</button>
+
+            <button type="submit" className="btn btn-primary w-100" disabled={loading}>
+              {loading ? 'Signing up...' : 'Sign Up'}
+            </button>
           </form>
         </div>
       </div>
