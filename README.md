@@ -63,7 +63,7 @@ To use Velara, follow these steps:
 
 ## Demo
 
-Check out [Velara](https://velara-drab.vercel.app/)
+Check out [Velara](https://velara-cyan.vercel.app/)
 
 ## Technologies Used
 
