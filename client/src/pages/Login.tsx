@@ -14,15 +14,18 @@ export default function Login() {
     setLoading(true);
 
     try {
-      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/login`, {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/auth/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ usernameOrEmail: email, password }),
+        body: JSON.stringify({ email, password }),
       });
 
       const data = await response.json();
 
       if (response.ok) {
+
+        const tokenPayload = JSON.parse(atob(data.token.split('.')[1]));
+        console.log('Decoded token payload:', tokenPayload);
         localStorage.setItem('user', JSON.stringify(data.user));
         localStorage.setItem('token', data.token);
         navigate('/dashboard/home');

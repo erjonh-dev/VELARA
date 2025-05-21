@@ -12,6 +12,23 @@ exports.getEmployees = async (_req, res) => {
   }
 };
 
+exports.getMyEmployeeData = async (req, res) => {
+  try {
+    const userEmail = req.user.email; 
+
+    const employee = await Employee.findOne({ email: userEmail });
+
+    if (!employee) {
+      return res.status(404).json({ message: 'Employee not found' });
+    }
+
+    res.json(employee);
+  } catch (err) {
+    console.error('Error fetching employee data:', err.message);
+    res.status(500).json({ message: 'Server error' });
+  }
+};
+
 exports.addEmployee = async (req, res) => {
   try {
     const employee = await Employee.create(req.body);

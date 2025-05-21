@@ -61,6 +61,17 @@ To use Velara, follow these steps:
 
 6. Access the application through your web browser at `http://localhost:3000`.
 
+## API Access and Role-based Authorization
+
+- The API endpoint `/api/employees` returns the list of employees.
+- **Only users with the role `admin` can access this endpoint.**  
+  This is enforced by the backend middleware:
+  - `authMiddleware` verifies the JWT token and identifies the user.
+  - `adminMiddleware` checks the user's role.
+- If a non-admin user tries to access employee data, the server responds with HTTP status **403 Forbidden**.
+- This ensures that sensitive employee data is protected and accessible only by authorized administrators.
+
+
 ## Demo
 
 Check out [Velara](https://velara-drab.vercel.app/)

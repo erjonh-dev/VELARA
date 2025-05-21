@@ -1,16 +1,17 @@
 const express = require('express');
 const router = express.Router();
-const Employee = require('../models/Employee');
+const { authMiddleware, adminMiddleware } = require('../middleware/authMiddleware');
+const { 
+  getEmployees, 
+  addEmployee, 
+  updateEmployeesJSON,
+  getMyEmployeeData
+} = require('../controllers/employeeController');
 
 
-router.get('/', async (req, res) => {
-  try {
-    const employees = await Employee.find();
-    res.json(employees);
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: 'Server error' });
-  }
-});
+router.get('/', authMiddleware, adminMiddleware, getEmployees);
+router.get('/me', authMiddleware, getMyEmployeeData);
+router.post('/', authMiddleware, adminMiddleware, addEmployee);
+router.put('/update-json', authMiddleware, adminMiddleware, updateEmployeesJSON);
 
 module.exports = router;
