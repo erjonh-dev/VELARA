@@ -1,11 +1,8 @@
 const express = require('express');
 const router = express.Router();
+const { authMiddleware, adminMiddleware } = require('../middleware/authMiddleware');
+const { getAllUsers } = require('../controllers/authController');
 
-const auth = require('../middleware/authMiddleware');
-const isAdmin = require('../middleware/isAdmin');
-const { getAllUsers } = require('../controllers/userController');
-
-
-router.get('/', auth, isAdmin, getAllUsers);
+router.get('/', authMiddleware, adminMiddleware, getAllUsers);
 
 module.exports = router;

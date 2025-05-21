@@ -13,8 +13,6 @@ app.use(express.json());
 
 
 app.use('/api/employees', require('./routes/employeeRoutes'));
-
-
 app.use('/api/auth', require('./routes/authRoutes'));
 app.use('/api/requests', require('./routes/requestRoutes'));
 app.use('/api/users', require('./routes/userRoutes'));
