@@ -4,6 +4,10 @@
 
 Velara simplifies HR management with features for hiring, payroll, employee records, and digital contracts. It streamlines processes, ensuring efficiency and compliance for modern businesses.
 
+## Demo
+
+Check out [Velara](https://velara-cyan.vercel.app/)
+
 ## Features
 
 - Manage employee data and digital hiring processes
@@ -102,13 +106,6 @@ To test protected admin routes and features, an admin user is required.
 
 - Only users with the role `admin` can access admin-specific API endpoints, such as `/api/employees`.
 - Unauthorized users attempting to access these endpoints will receive a **403 Forbidden** response.
-
-
-
-
-## Demo
-
-Check out [Velara](https://velara-cyan.vercel.app/)
 
 ## Technologies Used
 
