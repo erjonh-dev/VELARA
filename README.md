@@ -72,6 +72,19 @@ To use Velara, follow these steps:
 - This ensures that sensitive employee data is protected and accessible only by authorized administrators.
 
 
+## Admin Test Credentials
+
+For testing purposes, you can use the following admin account to access protected routes and verify the user list:
+
+- **Email:** Havollierjon1@hotmail.com  
+- **Password:** (the password you set during user creation)
+
+> **Note:** The password stored in the database is hashed with bcrypt for security reasons. If needed, you can specify here the plaintext password you used when creating this admin account.
+
+If you prefer, you can also create your own admin user via the registration process or seed scripts.
+
+
+
 ## Demo
 
 Check out [Velara](https://velara-cyan.vercel.app/)
