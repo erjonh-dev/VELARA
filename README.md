@@ -108,7 +108,7 @@ To test protected admin routes and features, an admin user is required.
 
 ## Demo
 
-Check out [Velara](https://velara-cyan.vercel.app/)
+Check out [Velara](https://velara-6iwd4lewb-havollierjons-projects.vercel.app/)
 
 ## Technologies Used
 
