@@ -6,9 +6,8 @@ function signJwt(user) {
   const payload = {
     id: user._id.toString(),
     role: user.role,
-    email: user.email,  
+    email: user.email,
   };
-  console.log('🚀  Signing token with payload:', payload);
   return jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '1h' });
 }
 
@@ -42,7 +41,6 @@ exports.registerUser = async (req, res) => {
       }
     });
   } catch (err) {
-    console.error('registerUser error:', err.message);
     res.status(500).json({ msg: 'Server error' });
   }
 };
@@ -62,7 +60,6 @@ exports.loginUser = async (req, res) => {
     if (!isMatch) return res.status(400).json({ msg: 'Incorrect password' });
 
     const token = signJwt(user);
-    console.log('Token payload:', jwt.decode(token));
 
     return res.json({
       token,
@@ -75,7 +72,6 @@ exports.loginUser = async (req, res) => {
       }
     });
   } catch (err) {
-    console.error('loginUser error:', err.message);
     res.status(500).json({ msg: 'Server error' });
   }
 };
@@ -87,7 +83,6 @@ exports.getUserData = async (req, res) => {
 
     res.json(user);
   } catch (err) {
-    console.error('getUserData error:', err.message);
     res.status(500).json({ msg: 'Server error' });
   }
 };
@@ -96,8 +91,7 @@ exports.getAllUsers = async (_req, res) => {
   try {
     const users = await User.find().select('-password').sort({ name: 1 });
     res.json(users);
-  } catch (error) {
-    console.error('getAllUsers error:', error.message);
+  } catch (err) {
     res.status(500).json({ msg: 'Server error' });
   }
 };

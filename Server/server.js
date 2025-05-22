@@ -5,8 +5,6 @@ const connectDB = require('./config/db');
 
 dotenv.config();
 
-console.log('MongoDB connection string:', process.env.MONGO_URI?.slice(0, 40)); 
-
 connectDB();
 
 const app = express();
