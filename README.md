@@ -72,16 +72,37 @@ To use Velara, follow these steps:
 - This ensures that sensitive employee data is protected and accessible only by authorized administrators.
 
 
-## Admin Test Credentials
+## Admin User Setup
 
-For testing purposes, you can use the following admin account to access protected routes and verify the user list:
+To test protected admin routes and features, an admin user is required.
 
-- **Email:** Havollierjon1@hotmail.com  
-- **Password:** (the password you set during user creation)
+### How to get an admin user
 
-> **Note:** The password stored in the database is hashed with bcrypt for security reasons. If needed, you can specify here the plaintext password you used when creating this admin account.
+- **Default admin user (recommended for testing):**  
+  You can create an admin user manually in the database (MongoDB Compass or CLI) by adding a user with the `role` field set to `"admin"`.  
+  For example, create a user with these fields:
 
-If you prefer, you can also create your own admin user via the registration process or seed scripts.
+  ```json
+  {
+    "email": "admin@example.com",
+    "password": "<hashed_password>",
+    "role": "admin"
+  }
+
+> **Note:** Passwords must be hashed before saving in the database.  
+> You can generate a hashed password using a tool like bcrypt, or create a normal user via the registration form and then manually update their role to `"admin"` in the database.
+
+- **Assign admin role via registration:**  
+  Register a new user normally, then update their `role` field to `"admin"` manually in MongoDB Compass or via a database script.
+
+- **Seed script (optional):**  
+  You can include a seed script that creates a default admin user automatically to simplify testing.
+
+### Access control
+
+- Only users with the role `admin` can access admin-specific API endpoints, such as `/api/employees`.
+- Unauthorized users attempting to access these endpoints will receive a **403 Forbidden** response.
+
 
 
 
