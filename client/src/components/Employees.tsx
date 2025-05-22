@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
+const baseURL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+
 interface Employee {
   _id?: string;
   id?: number;
@@ -39,7 +41,7 @@ const Employees: React.FC = () => {
 
       try {
         const res = await axios.get(
-          'http://localhost:5000/api/employees',
+          `${baseURL}/api/employees`,
           { headers: { Authorization: `Bearer ${token}` } }
         );
         console.log('Employees API response:', res.data);
@@ -101,4 +103,3 @@ const Employees: React.FC = () => {
 };
 
 export default Employees;
-  

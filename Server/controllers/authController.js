@@ -5,7 +5,8 @@ const User = require('../models/User');
 function signJwt(user) {
   const payload = {
     id: user._id.toString(),
-    role: user.role
+    role: user.role,
+    email: user.email,  
   };
   console.log('🚀  Signing token with payload:', payload);
   return jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '1h' });

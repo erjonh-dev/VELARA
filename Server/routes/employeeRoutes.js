@@ -9,7 +9,7 @@ const {
 } = require('../controllers/employeeController');
 
 
-router.get('/', authMiddleware, adminMiddleware, getEmployees);
+router.get('/', authMiddleware,  getEmployees);
 router.get('/me', authMiddleware, getMyEmployeeData);
 router.post('/', authMiddleware, adminMiddleware, addEmployee);
 router.put('/update-json', authMiddleware, adminMiddleware, updateEmployeesJSON);
